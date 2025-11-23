@@ -14,7 +14,7 @@ if (isset($_POST['masuk'])) {
         $_SESSION['role'] = $data['role'];
 
         if ($data['role'] == 'Admin') {
-            header("Location: ../admin/create/tabel.php");
+            header("Location: ../admin/awal.php");
         } else {
             header("Location: ../user/awal.php");
         }
@@ -52,27 +52,28 @@ if (isset($_POST['masuk'])) {
 
         <h5 class="text-center fw-bold">Masuk Kembali</h5>
         <p class="text-center text-muted mb-4">Masuk untuk melanjutkan perjalanan Anda</p>
-
+        <form method="POST" action="">
         <!-- Email -->
         <div class="mb-3">
             <label class="form-label">Username</label>
-            <input type="text" class="form-control" placeholder="Masukkan Username">
+            <input type="text" class="form-control" name="username"placeholder="Masukkan Username">
         </div>
 
         <!-- Password -->
         <div class="mb-3">
             <label class="form-label">Password</label>
             <div class="input-group">
-                <input id="password" type="password" class="form-control" placeholder="Masukkan password">
+                <input id="password" type="password" name="password" class="form-control" placeholder="Masukkan password">
             </div>
         </div>
 
         <button class="btn btn-primary w-100 mt-3" type="submit" name="masuk" >Masuk</button>
-        <a href="index.html" class="btn btn-secondary w-100 mt-3 mb-3">Kembali</a>
+        <a href="../user/awal.php" class="btn btn-secondary w-100 mt-3 mb-3">Kembali</a>
 
         <div class="text-center">
-            Belum punya akun? <a href="daftar.html" class="text-primary">Daftar sekarang</a>
+            Belum punya akun? <a href="daftar.php" class="text-primary">Daftar sekarang</a>
         </div>
+        </form>
     </div>
 </body>
 </html>

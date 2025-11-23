@@ -1,3 +1,6 @@
+<?php
+include "../config/app.php";
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,236 +14,172 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="light">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+        }
 
-    <!-- NAVBAR -->
-   <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 sticky-top transition">
+        /* HERO */
+        .hero {
+            height: 550px;
+            background: linear-gradient( rgba(0,0,0,0.6), rgba(0,0,0,0.6) ),
+                url("src/bajo.jpeg") center/cover no-repeat;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 sticky-top">
     <div class="container">
 
-        <!-- Brand -->
-        <a href="index.html" class="navbar-brand fw-bold text-primary">
-            <span class="accent1">Na</span><span class="accent2">Tour</span>
+        <a href="awal.php" class="navbar-brand fw-bold text-primary">
+            <span class="text-primary">Na</span><span class="text-success">Tour</span>
         </a>
 
-        <!-- Mobile Toggle Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Collapsible Menu -->
         <div class="collapse navbar-collapse justify-content-center" id="navMenu">
             <ul class="navbar-nav gap-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="#hero" data-page="index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#destinasi" data-page="destinasi">Destination</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#aboutus" data-page="about">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#kontak" data-page="kontak">Contact Us</a>
-                </li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#hero">Home</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#destinasi">Destination</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#aboutus">About Us</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#kontak">Contact Us</a></li>
             </ul>
         </div>
 
-        <!-- Action Buttons -->
         <div class="d-flex gap-2">
-            <a href="logintest.html" class="btn btn-outline-primary">Masuk</a>
-            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            <a href="../Login/login.php" class="btn btn-outline-primary">Masuk</a>
+            <a href="../Login/daftar.php" class="btn btn-primary">Daftar</a>
         </div>
     </div>
-</nav> 
+</nav>
 
-    <!-- HERO -->
-<section>
-    <header id="hero" class="hero d-flex align-items-center">
-        <div class="container text-white">
-            <span class="badge bg-primary fw-semibold px-3 py-2 mb-2 animate-fade">Web Traveling NTT Terpecaya</span>
+<!-- HERO -->
+<header id="hero" class="hero d-flex align-items-center text-white">
+    <div class="container">
+        <span class="badge bg-primary fw-semibold px-3 py-2 mb-2">Web Traveling NTT Terpercaya</span>
 
-            <h1 class="display-4 fw-bold hero-title">
-            Wujudkan
-            <span class="accent1">Liburan</span> <br>
-            <span class="accent2">Impian</span>
-            Anda
-            </h1>
+        <h1 class="display-4 fw-bold" style="max-width: 500px;">
+            Wujudkan <span class="text-primary">Liburan</span><br>
+            <span class="text-success">Impian</span> Anda
+        </h1>
 
+        <p class="lead mt-3">Booking hotel, pesawat dan wisata lebih cepat & hemat</p>
 
-            <p class="lead mt-3 animate-fade-delay">
-                Booking hotel, pesawat dan wisata lebih cepat & hemat
-            </p>
+        <a href="#destinasi" class="btn btn-lg btn-info text-white shadow mt-3">
+            Mulai Eksplor
+        </a>
+    </div>
+</header>
 
-            <a href="#destinasi" class="btn btn-lg btn-info text-white shadow-lg mt-4 animate-scale">
-                Mulai Eksplor 
-            </a>
+<br><br>
+
+<!-- DESTINATIONS -->
+<div class="container my-5">
+  <h2 class="mb-4 text-center fw-bold">Daftar Paket Wisata</h2>
+
+  <div class="row g-4 justify-content-center">
+    
+    <?php
+    // Ambil data dari database
+    $sql = "SELECT * FROM paket ORDER BY id_paket";
+    $result = $db->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+    ?>
+    
+    <!-- Card Paket Wisata -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+          <h5>gambar paket</h5>
         </div>
-    </header>
+        <div class="card-body">
+          <a href="detail.php" class="card-title"><?php echo $row['nama_paket']; ?></a>
+          <p class="text-muted mb-2">Harga: <strong>Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></strong></p>
+          <p class="card-text"><?php echo $row['deskripsi']; ?></p>
+          <a href="detail.php?id=<?php echo $row['id_paket']; ?>" class="btn btn-primary">Lihat Detail</a>
+        </div>
+      </div>
+    </div>
+
+    <?php
+        }
+    } else {
+        echo "<div class='col-12 text-center'><div class='alert alert-warning'>Belum ada paket wisata tersedia.</div></div>";
+    }
+    $db->close();
+    ?>
+
+  </div>
+</div>
+
+<br><br>
+
+<!-- ABOUT US -->
+<section id="aboutus" class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">About Us</h2>
+        <p class="text-muted">Our values define how we serve travelers worldwide.</p>
+    </div>
+
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="p-4 shadow-sm rounded">
+                <h5 class="fw-bold mt-3">Global Access</h5>
+                <p class="text-muted">We provide travel services across the world.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-4 shadow-sm rounded">
+                <h5 class="fw-bold mt-3">Trusted Information</h5>
+                <p class="text-muted">All travel info is verified and accurate.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-4 shadow-sm rounded">
+                <h5 class="fw-bold mt-3">User First</h5>
+                <p class="text-muted">We prioritize comfort & experience.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <br><br>
 
-    <!-- DESTINATIONS -->
-    <section id="destinasi" class="py-5">
-        <div class="container text-center">
-            <h2 class="fw-semibold mb-2">Destinasi Populer</h2>
-            <p class="text-muted mb-5">Jelajahi destinasi pilihan traveler</p>
-
-            <div class="row g-4">
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm card-hover">
-                        <img src="img/bali.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5>Bali</h5>
-                            <p>Mulai dari Rp 1.000.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm card-hover">
-                        <img src="img/tokyo.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5>Tokyo</h5>
-                            <p>Mulai dari Rp 1.900.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm card-hover">
-                        <img src="img/bali.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5>Bali</h5>
-                            <p>Mulai dari Rp 1.000.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm card-hover">
-                        <img src="img/tokyo.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5>Tokyo</h5>
-                            <p>Mulai dari Rp 1.900.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm card-hover">
-                        <img src="img/bali.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5>Bali</h5>
-                            <p>Mulai dari Rp 1.000.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm card-hover">
-                        <img src="img/tokyo.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <h5>Tokyo</h5>
-                            <p>Mulai dari Rp 1.900.000</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-<br><br><br>
-
-        <!-- ABOUT US -->
-     <section id="aboutus" class="container py-5">
-  <div class="text-center mb-5">
-    <h2 class="fw-bold">About Us</h2>
-    <p class="text-muted">Our values define how we serve travelers worldwide.</p>
-  </div>
-
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="p-4 shadow-sm rounded text-center">
-        <i class="bi bi-globe2 display-5 text-primary"></i>
-        <h5 class="fw-bold mt-3">Global Access</h5>
-        <p class="text-muted">We provide travel information and services across destinations worldwide.</p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="p-4 shadow-sm rounded text-center">
-        <i class="bi bi-shield-check display-5 text-primary"></i>
-        <h5 class="fw-bold mt-3">Trusted Information</h5>
-        <p class="text-muted">All travel recommendations are verified and curated for accuracy.</p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="p-4 shadow-sm rounded text-center">
-        <i class="bi bi-emoji-smile display-5 text-primary"></i>
-        <h5 class="fw-bold mt-3">User First</h5>
-        <p class="text-muted">Our priority is delivering a seamless and enjoyable experience.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<br><br><br>
-
-        <!-- CONTACT US -->
+<!-- CONTACT US -->
 <section id="kontak" class="container py-5">
-  <h2 class="fw-bold mb-3">Contact Us</h2>
+    <h2 class="fw-bold mb-3">Contact Us</h2>
 
-  <p class="text-muted" style="max-width:650px;">
-    If you have questions, business inquiries, or require assistance with your travel planning,
-    please reach out using one of the contact methods below. Our team is ready to support you.
-  </p>
+    <p class="text-muted" style="max-width:650px;">
+        If you have questions or business inquiries, reach us using the info below.
+    </p>
 
-  <div class="mt-4">
-    <p><strong>Email:</strong> support@natour.com</p>
-    <p><strong>Phone:</strong> +62 800-000-000</p>
-    <p><strong>Business Hours:</strong> Monday — Friday | 09:00 — 18:00 (GMT+7)</p>
-  </div>
+    <div class="mt-4">
+        <p><strong>Email:</strong> support@natour.com</p>
+        <p><strong>Phone:</strong> +62 800-000-000</p>
+        <p><strong>Business Hours:</strong> Monday — Friday | 09:00 — 18:00 (GMT+7)</p>
+    </div>
 </section>
 
-    <!-- FOOTER -->
-    <footer class="text-center py-4 bg-dark text-white">
-        <p class="fw-semibold m-0">Traveloka Clone</p>
+<!-- FOOTER -->
+<footer class="text-center py-4 bg-dark text-white">
+    <p class="fw-semibold m-0">NATOUR</p>
 
-        <a href="aboutus.html">About Us</a> -
-        <a href="kontak.html">Contact Us</a>
-        <br>
-
-        <small>© 2025 — All Rights Reserved</small>
-    </footer>
+    <a href="aboutus.html" class="text-white">About Us</a> -
+    <a href="kontak.html" class="text-white">Contact Us</a>
+    <br>
+    <small>© 2025 — All Rights Reserved</small>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-/* Theme Toggle 
-const body = document.body;
-const toggleBtn = document.getElementById('themeToggle');
-
-toggleBtn.addEventListener('click', () => {
-    body.classList.toggle("dark");
-    toggleBtn.textContent = body.classList.contains("dark") ? "☀️" : "🌙";
-});
-
-document.querySelectorAll('.nav-link').forEach(item => {
-    item.addEventListener('click', () => {
-        const navbar = document.querySelector('.navbar-collapse');
-        const bsCollapse = bootstrap.Collapse.getInstance(navbar);
-        if (bsCollapse) bsCollapse.hide();
-    });
-});*/
-
-</script>
 
 </body>
 </html>
