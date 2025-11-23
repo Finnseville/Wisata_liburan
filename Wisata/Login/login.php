@@ -1,9 +1,35 @@
+<?php
+session_start();
+include "../config/app.php";
+
+if (isset($_POST['masuk'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $query = mysqli_query($db, "SELECT * FROM akun WHERE username='$username' AND password='$password'");
+    $data = mysqli_fetch_assoc($query);
+
+    if ($data) {
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['role'] = $data['role'];
+
+        if ($data['role'] == 'Admin') {
+            header("Location: ../admin/create/tabel.php");
+        } else {
+            header("Location: ../user/awal.php");
+        }
+        exit;
+    } else {
+        $error = "Username atau password salah!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Traveloka Login</title>
+    <title>NATOUR Login</title>
 
        <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -41,7 +67,7 @@
             </div>
         </div>
 
-        <button class="btn btn-primary w-100 mt-3">Masuk</button>
+        <button class="btn btn-primary w-100 mt-3" type="submit" name="masuk" >Masuk</button>
         <a href="index.html" class="btn btn-secondary w-100 mt-3 mb-3">Kembali</a>
 
         <div class="text-center">
