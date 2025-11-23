@@ -30,6 +30,19 @@ html {
   color: #0f9d46    ; /* second color */
 }
 
+.accent1,
+.accent2 {
+    letter-spacing: 0;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent1: #1458df; /* your first color */
+    --accent2: #0f9d46; /* your second color */
+}
+
 /* Navbar Link */
 .nav-link {
     font-weight: 500;
@@ -95,6 +108,9 @@ html {
     scroll-margin-top: 150px; /* adjust based on navbar height */
 }
 
+.bggreen {
+    background-color: #0f9d46; /* second color */
+}
 
 
 @keyframes fadeIn {
