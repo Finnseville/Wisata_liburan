@@ -61,11 +61,11 @@ if (isset($_POST['masuk'])) {
 
         <!-- Password -->
         <div class="mb-3">
-            <label class="form-label">Password</label>
-            <div class="input-group">
-                <input id="password" type="password" name="password" class="form-control" placeholder="Masukkan password">
-            </div>
-        </div>
+  <label class="form-label">Password</label>
+  <div class="input-group">
+    <input id="password" type="password" name="password" class="form-control" placeholder="Masukkan password">
+  </div>
+</div>
 
         <button class="btn btn-primary w-100 mt-3" type="submit" name="masuk" >Masuk</button>
         <a href="../user/awal.php" class="btn btn-secondary w-100 mt-3 mb-3">Kembali</a>
@@ -91,7 +91,7 @@ if (isset($_POST['masuk'])) {
 
         .login-box {
             width: 100%;
-            max-width: 380px;
+            max-width: 420px;
             background: #fff;
             border-radius: 12px;
             padding: 30px;

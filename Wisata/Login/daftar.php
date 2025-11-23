@@ -1,3 +1,23 @@
+<?php
+include "../config/app.php";
+
+if (isset($_POST['daftar'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $role = "User";
+
+    $stmt = $db->prepare("INSERT INTO akun (username, password, role) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $username, $password, $role);
+
+    if ($stmt->execute()) {
+        header("Location: login.php?success=1");
+    } else {
+        $error = "Gagal mendaftar!";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,27 +45,25 @@
         <h5 class="text-center fw-bold">Daftar Akun Baru</h5>
         <p class="text-center text-muted mb-4">Buat akun untuk mulai merencanakan perjalanan Anda</p>
 
-        <form>
+       <form method="POST">
+    <!-- Username  -->
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Masukkan Username" required>
+    </div>
 
-            <!-- Username  -->
-            <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control" placeholder="Masukkan Username">
-            </div>
+    <!-- Password -->
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Masukkan Password" required>
+    </div>
 
-            <!-- Password -->
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <div class="input-group">
-                    <input id="password" type="password" class="form-control mb-5" placeholder="Masukkan Password">
-                </div>
-
-            <button type="submit" class="btn btn-primary w-100">Daftar</button>\
-            <a href="index.html" type="submit" class="btn btn-secondary w-100">Kembali</a href="index.html">
-        </form>
+    <button type="submit" name="daftar" class="btn btn-primary w-100 mt-3">Daftar</button>
+    <a href="../user/awal.php" class="btn btn-secondary w-100 mt-3">Kembali</a>
+</form>
 
         <p class="text-center mt-3">
-            Sudah punya akun? <a href="logintest.html" class="text-primary">Masuk sekarang</a>
+            Sudah punya akun? <a href="login.php" class="text-primary">Masuk sekarang</a>
         </p>
 
     </div>

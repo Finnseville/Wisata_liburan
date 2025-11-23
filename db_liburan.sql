@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 23, 2025 at 04:01 PM
--- Server version: 8.4.3
--- PHP Version: 8.3.26
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 23 Nov 2025 pada 21.28
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,39 +24,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akun`
+-- Struktur dari tabel `akun`
 --
 
 CREATE TABLE `akun` (
-  `id` int NOT NULL,
+  `id_akun` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role` enum('Admin','User') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `akun`
+-- Dumping data untuk tabel `akun`
 --
 
-INSERT INTO `akun` (`id`, `username`, `password`, `role`) VALUES
+INSERT INTO `akun` (`id_akun`, `username`, `password`, `role`) VALUES
 (1, 'finn', '12345', 'User'),
-(2, 'dewa', '12345', 'Admin');
+(2, 'dewa', '12345', 'Admin'),
+(4, 'Maulid', '12345', 'User');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `destinasi`
+-- Struktur dari tabel `destinasi`
 --
 
 CREATE TABLE `destinasi` (
-  `id_destinasi` int NOT NULL,
-  `nama_destinasi` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `lokasi` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `deskripsi` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_destinasi` int(11) NOT NULL,
+  `nama_destinasi` varchar(100) NOT NULL,
+  `lokasi` varchar(100) NOT NULL,
+  `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `destinasi`
+-- Dumping data untuk tabel `destinasi`
 --
 
 INSERT INTO `destinasi` (`id_destinasi`, `nama_destinasi`, `lokasi`, `deskripsi`) VALUES
@@ -75,19 +76,19 @@ INSERT INTO `destinasi` (`id_destinasi`, `nama_destinasi`, `lokasi`, `deskripsi`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paket`
+-- Struktur dari tabel `paket`
 --
 
 CREATE TABLE `paket` (
-  `id_paket` int NOT NULL,
-  `nama_paket` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `durasi` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `harga` int NOT NULL
+  `id_paket` int(11) NOT NULL,
+  `nama_paket` varchar(100) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `durasi` varchar(50) NOT NULL,
+  `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `paket`
+-- Dumping data untuk tabel `paket`
 --
 
 INSERT INTO `paket` (`id_paket`, `nama_paket`, `deskripsi`, `durasi`, `harga`) VALUES
@@ -98,58 +99,67 @@ INSERT INTO `paket` (`id_paket`, `nama_paket`, `deskripsi`, `durasi`, `harga`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paket_destinasi`
+-- Struktur dari tabel `paket_destinasi`
 --
 
 CREATE TABLE `paket_destinasi` (
-  `id` int NOT NULL,
-  `id_paket` int NOT NULL,
-  `id_destinasi` int NOT NULL
+  `id` int(11) NOT NULL,
+  `id_paket` int(11) NOT NULL,
+  `id_destinasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemesanan`
+-- Struktur dari tabel `pemesanan`
 --
 
 CREATE TABLE `pemesanan` (
-  `id_pemesanan` int NOT NULL,
-  `nama_pelanggan` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `telepon` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `id_paket` int NOT NULL,
+  `id_pemesanan` int(11) NOT NULL,
+  `nama_pelanggan` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telepon` varchar(20) NOT NULL,
+  `id_akun` int(11) NOT NULL,
+  `id_paket` int(11) NOT NULL,
   `tanggal_berangkat` date NOT NULL,
-  `durasi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `jumlah_orang` int NOT NULL,
-  `total_bayar` int NOT NULL,
-  `status` enum('dikonfirmasi','dibatalkan','menunggu') COLLATE utf8mb4_general_ci NOT NULL
+  `durasi` varchar(30) NOT NULL,
+  `jumlah_orang` int(11) NOT NULL,
+  `total_bayar` int(11) NOT NULL,
+  `status` enum('dikonfirmasi','dibatalkan','menunggu') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pemesanan`
+--
+
+INSERT INTO `pemesanan` (`id_pemesanan`, `nama_pelanggan`, `email`, `telepon`, `id_akun`, `id_paket`, `tanggal_berangkat`, `durasi`, `jumlah_orang`, `total_bayar`, `status`) VALUES
+(1, 'Adlan', 'Adlan@gmail.com', '081234567890', 0, 101, '2025-11-30', '3 Hari', 3, 1800, 'dikonfirmasi'),
+(2, 'Adlan', 'Adlan@gmail.com', '081234567890', 0, 102, '2025-11-30', '5 Hari', 3, 2100, 'dibatalkan');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `akun`
+-- Indeks untuk tabel `akun`
 --
 ALTER TABLE `akun`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_akun`);
 
 --
--- Indexes for table `destinasi`
+-- Indeks untuk tabel `destinasi`
 --
 ALTER TABLE `destinasi`
   ADD PRIMARY KEY (`id_destinasi`);
 
 --
--- Indexes for table `paket`
+-- Indeks untuk tabel `paket`
 --
 ALTER TABLE `paket`
   ADD PRIMARY KEY (`id_paket`);
 
 --
--- Indexes for table `paket_destinasi`
+-- Indeks untuk tabel `paket_destinasi`
 --
 ALTER TABLE `paket_destinasi`
   ADD PRIMARY KEY (`id`),
@@ -157,59 +167,60 @@ ALTER TABLE `paket_destinasi`
   ADD KEY `id_paket` (`id_paket`);
 
 --
--- Indexes for table `pemesanan`
+-- Indeks untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD PRIMARY KEY (`id_pemesanan`),
-  ADD KEY `id_paket` (`id_paket`);
+  ADD KEY `id_paket` (`id_paket`),
+  ADD KEY `id_akun` (`id_akun`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `akun`
+-- AUTO_INCREMENT untuk tabel `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `destinasi`
+-- AUTO_INCREMENT untuk tabel `destinasi`
 --
 ALTER TABLE `destinasi`
-  MODIFY `id_destinasi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `id_destinasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
 
 --
--- AUTO_INCREMENT for table `paket`
+-- AUTO_INCREMENT untuk tabel `paket`
 --
 ALTER TABLE `paket`
-  MODIFY `id_paket` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
--- AUTO_INCREMENT for table `paket_destinasi`
+-- AUTO_INCREMENT untuk tabel `paket_destinasi`
 --
 ALTER TABLE `paket_destinasi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
 
 --
--- AUTO_INCREMENT for table `pemesanan`
+-- AUTO_INCREMENT untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `paket_destinasi`
+-- Ketidakleluasaan untuk tabel `paket_destinasi`
 --
 ALTER TABLE `paket_destinasi`
   ADD CONSTRAINT `paket_destinasi_ibfk_1` FOREIGN KEY (`id_paket`) REFERENCES `paket` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `paket_destinasi_ibfk_2` FOREIGN KEY (`id_destinasi`) REFERENCES `destinasi` (`id_destinasi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pemesanan`
+-- Ketidakleluasaan untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_paket`) REFERENCES `paket` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE;

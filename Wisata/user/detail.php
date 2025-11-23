@@ -42,7 +42,7 @@ if(!$paket) {
 
 <nav class="navbar navbar-light bg-light px-3">
     <a class="navbar-brand" href="home.php">NATOUR</a>
-    <a href="awal.php" class="btn btn-outline-secondary btn-sm">Kembali</a>
+    <a href="awal.php" class="btn btn-success btn-sm">Kembali</a>
 </nav>
 
 <div class="container my-4">
@@ -73,7 +73,7 @@ if(!$paket) {
             <div class="mb-3">
               <label>Paket Wisata</label>
               <input type="text" class="form-control" value="<?= htmlspecialchars($paket['nama_paket'], ENT_QUOTES); ?>" disabled>
-  <input type="hidden" name="paket_wisata" value="<?= htmlspecialchars($paket['nama_paket'], ENT_QUOTES); ?>">
+              
             </div>
 
             <div class="mb-3">

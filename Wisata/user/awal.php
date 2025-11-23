@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../Login/login.php");
+    exit;
+    
+}
 include "../config/app.php";
 ?>
 <!DOCTYPE html>
@@ -44,17 +50,31 @@ include "../config/app.php";
 
         <div class="collapse navbar-collapse justify-content-center" id="navMenu">
             <ul class="navbar-nav gap-3">
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#hero">Home</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#destinasi">Destination</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#aboutus">About Us</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#kontak">Contact Us</a></li>
-            </ul>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="#hero">Home</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="#destinasi">Destination</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="#aboutus">About Us</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="#kontak">Contact Us</a></li>
+
+    <!-- MENU DAFTAR PEMESANAN -->
+    <li class="nav-item">
+        <a class="nav-link fw-semibold text-primary" href="daftar_pemesanan.php">
+            Daftar Pemesanan
+        </a>
+    </li>
+</ul>
+
         </div>
 
         <div class="d-flex gap-2">
-            <a href="../Login/login.php" class="btn btn-outline-primary">Masuk</a>
-            <a href="../Login/daftar.php" class="btn btn-primary">Daftar</a>
+            <?php if (isset($_SESSION['username'])) { ?>
+                <span class="me-3">Halo, <b><?= $_SESSION['username'] ?></b></span>
+                <a href="../Login/logout.php" class="btn btn-danger">Logout</a>
+            <?php } else { ?>
+                <a href="../Login/login.php" class="btn btn-outline-primary">Masuk</a>
+                <a href="../Login/daftar.php" class="btn btn-primary">Daftar</a>
+            <?php } ?>
         </div>
+
     </div>
 </nav>
 

@@ -13,30 +13,34 @@ function select($query){
 
 function create_pesanan($post){
     global $db;
-    
-    $nama_pelanggan = $post['nama'];
-    $email = $post['email'];
-    $nohp = $post['nohp'];
-    $paket = $post['paket_wisata'];
-    
-    // AMBIL GUNUNG
-    $gunung_dipilih = isset($post['gunung']) ? $post['gunung'] : [];
-    $lokasi = !empty($gunung_dipilih[0]) ? $gunung_dipilih[0] : null;
-    $lokasi2 = !empty($gunung_dipilih[1]) ? $gunung_dipilih[1] : null;
-    
-    $tglbrkt = $post['tglbrkt'];
-    $tglplg = $post['tglplg'];
-    
-    // ===== TAMBAH JENIS WISATA INI =====
-    $jenis_wisata = isset($post['jenis_wisata']) ? $post['jenis_wisata'] : null;
-    
-    // Query dengan jenis-wisata
-    $query = "INSERT INTO pemesanan_db 
-              (nama_pelanggan, email, nohp, paket_wisata, lokasi_wisata, lokasi_wisata2, tanggal_keberangkatan, tanggal_kepulangan, `jenis_wisata`) 
-              VALUES ('$nama_pelanggan', '$email', '$nohp', '$paket', '$lokasi', '$lokasi2', '$tglbrkt', '$tglplg', '$jenis_wisata')";
-    
+
+    $nama       = mysqli_real_escape_string($db, $post['nama']);
+    $email      = mysqli_real_escape_string($db, $post['email']);
+    $telepon    = mysqli_real_escape_string($db, $post['nohp']);
+    $id_paket   = intval($post['id_paket']);
+    $tglbrkt    = $post['tglbrkt'];
+    $jumlah_org = intval($post['jumlah_org']);
+
+    // Ambil data paket
+    $paket = $db->query("SELECT * FROM paket WHERE id_paket = $id_paket")->fetch_assoc();
+    if(!$paket) return 0;
+
+    $durasi = $paket['durasi'];
+    $harga  = $paket['harga'];
+
+    // Hitung total bayar
+    $total_bayar = $harga * $jumlah_org;
+
+    $status = 'menunggu';
+
+    // Insert ke tabel pemesanan
+    $query = "INSERT INTO pemesanan 
+(nama_pelanggan, email, telepon, id_akun, id_paket, tanggal_berangkat, durasi, jumlah_orang, total_bayar, status)
+VALUES
+('$nama', '$email', '$telepon', '$id_akun', '$id_paket', '$tglbrkt', '$durasi', '$jumlah_org', '$total_bayar', '$status')";
+
     mysqli_query($db, $query);
-    
+
     return mysqli_affected_rows($db);
 }
 ?>
