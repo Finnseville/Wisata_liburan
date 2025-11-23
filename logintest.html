@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traveloka Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <style>
+        body {
+            background: #138af2 url('https://i.imgur.com/6pXjP0T.png') repeat; /* Replace with your pattern */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 380px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-logo {
+            font-size: 26px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .toggle-password {
+            cursor: pointer;
+        }
+
+        .social-btn img {
+            width: 20px;
+            margin-right: 8px;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 15px;
+            color: #606060;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="login-box">
+        <div class="login-logo text-primary">
+            <span>✈</span> Traveloka
+        </div>
+
+        <h5 class="text-center fw-bold">Selamat Datang Kembali</h5>
+        <p class="text-center text-muted mb-4">Masuk untuk melanjutkan perjalanan Anda</p>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label class="form-label">Email atau Nomor Telepon</label>
+            <input type="text" class="form-control" placeholder="Masukkan email atau nomor telepon">
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="input-group">
+                <input id="password" type="password" class="form-control" placeholder="Masukkan password">
+                <span class="input-group-text toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+                <div>
+                    <input type="checkbox" id="remember"> <label for="remember">Ingat saya</label>
+                </div>
+                <a href="#" class="text-primary text-decoration-none">Lupa password?</a>
+            </div>
+        </div>
+
+        <button class="btn btn-primary w-100 mt-3">Masuk</button>
+        <a href="index.html" class="btn btn-secondary w-100 mt-3">Kembali</a>
+
+        <div class="text-center my-3 text-muted">atau masuk dengan</div>
+
+        <!-- Social Login -->
+        <div class="d-flex gap-2 mb-3">
+            <button class="btn btn-outline-secondary flex-fill social-btn"><img src="https://i.imgur.com/nfH7j5C.png"> Google</button>
+            <button class="btn btn-outline-secondary flex-fill social-btn"><img src="https://i.imgur.com/LoXbG7L.png"> Facebook</button>
+        </div>
+
+        <div class="text-center">
+            Belum punya akun? <a href="daftar.html" class="text-primary">Daftar sekarang</a>
+        </div>
+
+        <p class="footer-text">Terpercaya oleh jutaan pengguna di seluruh dunia</p>
+    </div>
+
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById("password");
+            input.type = input.type === "password" ? "text" : "password";
+        }
+    </script>
+
+</body>
+</html>
