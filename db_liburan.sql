@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2025 pada 15.38
+-- Waktu pembuatan: 24 Nov 2025 pada 20.59
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -108,6 +108,22 @@ CREATE TABLE `paket_destinasi` (
   `id_destinasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `paket_destinasi`
+--
+
+INSERT INTO `paket_destinasi` (`id`, `id_paket`, `id_destinasi`) VALUES
+(308, 101, 201),
+(309, 101, 202),
+(310, 101, 203),
+(311, 102, 204),
+(312, 102, 205),
+(313, 102, 206),
+(314, 102, 207),
+(315, 103, 209),
+(316, 103, 210),
+(317, 103, 211);
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +151,9 @@ CREATE TABLE `pemesanan` (
 INSERT INTO `pemesanan` (`id_pemesanan`, `nama_pelanggan`, `email`, `telepon`, `id_akun`, `id_paket`, `tanggal_berangkat`, `durasi`, `jumlah_orang`, `total_bayar`, `status`) VALUES
 (8, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 101, '2025-11-30', '3 Hari', 3, 1800, 'dibatalkan'),
 (9, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 102, '2025-11-25', '5 Hari', 2, 1400, 'menunggu'),
-(10, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 103, '2025-11-29', '1 Hari', 1, 200, 'dikonfirmasi');
+(10, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 103, '2025-11-29', '1 Hari', 1, 200, 'dikonfirmasi'),
+(11, 'Maulid', 'maulid@gmail.com', '081234567890', 4, 101, '2025-11-25', '3 Hari', 2, 1200, 'menunggu'),
+(13, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 103, '2025-11-25', '4 Hari', 3, 600, 'menunggu');
 
 -- --------------------------------------------------------
 
@@ -148,6 +166,13 @@ CREATE TABLE `pemesanan_destinasi` (
   `id_pemesanan` int(11) DEFAULT NULL,
   `id_destinasi` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pemesanan_destinasi`
+--
+
+INSERT INTO `pemesanan_destinasi` (`id`, `id_pemesanan`, `id_destinasi`) VALUES
+(1, 13, 209);
 
 --
 -- Indexes for dumped tables
@@ -209,7 +234,7 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT untuk tabel `destinasi`
 --
 ALTER TABLE `destinasi`
-  MODIFY `id_destinasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `id_destinasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 
 --
 -- AUTO_INCREMENT untuk tabel `paket`
@@ -221,19 +246,19 @@ ALTER TABLE `paket`
 -- AUTO_INCREMENT untuk tabel `paket_destinasi`
 --
 ALTER TABLE `paket_destinasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemesanan_destinasi`
 --
 ALTER TABLE `pemesanan_destinasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

@@ -40,8 +40,15 @@ $wisata = $wisata_map[$id_paket] ?? null;
 
 $list_destinasi = [];
 if($wisata) {
-    $stmt = $db->prepare("SELECT * FROM destinasi WHERE paket = ? ORDER BY nama_destinasi");
-    $stmt->bind_param("s", $wisata);
+ $stmt = $db->prepare("
+    SELECT d.* 
+    FROM destinasi d
+    JOIN paket_destinasi pd 
+        ON d.id_destinasi = pd.id_destinasi
+    WHERE pd.id_paket = ?
+    ORDER BY d.nama_destinasi
+");
+$stmt->bind_param("i", $id_paket);
     $stmt->execute();
     $list_destinasi = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
@@ -113,22 +120,43 @@ if($wisata) {
               <input type="number" name="jumlah_org" class="form-control" required>
             </div>
 
-             <?php if(!empty($list_destinasi)): ?>
             <div class="mb-3">
-              <label class="fw-bold">Pilih Destinasi</label>
-              <small class="text-muted d-block mb-1">* Minimal 0, maksimal 3</small>
+    <label class="fw-bold">Pilih Destinasi</label>
+    <small class="text-muted d-block mb-1">* Maksimal 3 destinasi</small>
 
-              <?php foreach($list_destinasi as $g): ?>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="destinasi[]" 
-                       value="<?= $g['nama_destinasi']; ?>" id="destinasi<?= $g['id_destinasi']; ?>">
-                <label class="form-check-label" for="destinasi<?= $g['id_destinasi']; ?>">
-                  <?= $g['nama_destinasi']; ?>
-                </label>
-              </div>
-              <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
+    <?php
+    $query = $db->prepare("
+        SELECT d.id_destinasi, d.nama_destinasi
+        FROM destinasi d
+        JOIN paket_destinasi pd 
+            ON d.id_destinasi = pd.id_destinasi
+        WHERE pd.id_paket = ?
+    ");
+    $query->bind_param("i", $id_paket);
+    $query->execute();
+    $result = $query->get_result();
+
+    if ($result->num_rows == 0) {
+        echo "<div class='text-muted'>Tidak ada destinasi untuk paket ini.</div>";
+    }
+
+    while($row = $result->fetch_assoc()):
+    ?>
+        <div class="form-check">
+            <input 
+                type="checkbox" 
+                class="form-check-input"
+                name="destinasi[]" 
+                value="<?= $row['id_destinasi']; ?>"
+                id="dest<?= $row['id_destinasi']; ?>"
+            >
+            <label class="form-check-label" for="dest<?= $row['id_destinasi']; ?>">
+                <?= $row['nama_destinasi']; ?>
+            </label>
+        </div>
+    <?php endwhile; ?>
+</div>
+
 
             <div class="mb-3">
               <label>Tanggal Keberangkatan</label>
@@ -155,17 +183,18 @@ if($wisata) {
   </div>
 </div>
 <script>
-// BATAS MAKSIMAL CHECKBOX = 2
-document.addEventListener("DOMContentLoaded", () => {
-  const boxes = document.querySelectorAll('input[name="destinasi[]"]');
-  const max = 3;
+document.addEventListener("DOMContentLoaded", function() {
+    const boxes = document.querySelectorAll('input[name="destinasi[]"]');
+    const max = 3;
 
-  boxes.forEach(box => {
-    box.addEventListener("change", () => {
-      const checked = document.querySelectorAll('input[name="destinasi[]"]:checked').length;
-      boxes.forEach(b => b.disabled = checked >= max && !b.checked);
+    boxes.forEach(box => {
+        box.addEventListener("change", () => {
+            const checked = document.querySelectorAll('input[name="destinasi[]"]:checked').length;
+            boxes.forEach(b => {
+                b.disabled = checked >= max && !b.checked;
+            });
+        });
     });
-  });
 });
 </script>
 

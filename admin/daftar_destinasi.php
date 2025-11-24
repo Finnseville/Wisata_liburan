@@ -34,7 +34,15 @@
                         <?php
                         include '../config/app.php';
 
-                        $query = "SELECT * FROM destinasi ORDER BY id_destinasi ASC";
+                        $query = "
+    SELECT d.*, p.nama_paket 
+    FROM destinasi d
+    LEFT JOIN paket_destinasi pd 
+        ON d.id_destinasi = pd.id_destinasi
+    LEFT JOIN paket p 
+        ON pd.id_paket = p.id_paket
+    ORDER BY d.id_destinasi ASC
+";
                         $result = mysqli_query($db, $query);
 
                         $no = 1;
@@ -46,18 +54,18 @@
                             <td><?= $d['lokasi'] ?></td>
                             <td>
                                 <span class="badge bg-info text-dark">
-                                    <?= ucfirst($d['paket']) ?>
+                                    <?= $d['nama_paket'] ?? 'Aktif' ?>
                                 </span>
                             </td>
                             <td><?= $d['deskripsi'] ?></td>
                             <td>
-                                <a href="edit_destinasi.php?id=<?= $d['id_destinasi'] ?>" class="btn btn-warning btn-sm">
+                                <a href="edit_destinasi.php?id=<?= $d['id_destinasi'] ?>" class="btn btn-warning btn-sm">Edit
                                     <i class="fa fa-edit"></i>
                                 </a>
 
                                 <a href="hapus_destinasi.php?id=<?= $d['id_destinasi'] ?>" 
                                    onclick="return confirm('Hapus destinasi ini?')" 
-                                   class="btn btn-danger btn-sm">
+                                   class="btn btn-danger btn-sm">Hapus
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

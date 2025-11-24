@@ -1,6 +1,5 @@
 <?php
 include 'db.php';
-
 function select($query){
     global $db;
     $result = mysqli_query($db, $query);
@@ -11,34 +10,64 @@ function select($query){
     return $rows;
 }
 
-function create_pesanan($post){
+function create_pesanan($data) {
     global $db;
+
     session_start();
 
-    $id_akun = $_SESSION['id_akun']; 
+    $id_akun = $_SESSION['id_akun'] ?? null;
+    if(!$id_akun) {
+        return 0;
+    }
 
-    $nama       = mysqli_real_escape_string($db, $post['nama']);
-    $email      = mysqli_real_escape_string($db, $post['email']);
-    $telepon    = mysqli_real_escape_string($db, $post['nohp']);
-    $id_paket   = intval($post['id_paket']);
-    $tglbrkt    = $post['tglbrkt'];
-    $jumlah_org = intval($post['jumlah_org']);
+    $nama   = mysqli_real_escape_string($db, $data['nama']);
+    $email  = mysqli_real_escape_string($db, $data['email']);
+    $nohp   = mysqli_real_escape_string($db, $data['nohp']);
+    $jumlah = (int)$data['jumlah_org'];
+    $paket  = (int)$data['id_paket'];
+    $tglbrk = $data['tglbrkt'];
+    $tglplg = $data['tglplg'];
+    $destinasi = $data['destinasi'] ?? [];
 
-    $paket = $db->query("SELECT * FROM paket WHERE id_paket = $id_paket")->fetch_assoc();
-    if(!$paket) return 0;
+    // Ambil harga paket
+    $q = $db->query("SELECT harga FROM paket WHERE id_paket = $paket");
+    $pkt = $q->fetch_assoc();
+    $harga = (int)$pkt['harga'];
 
-    $durasi = $paket['durasi'];
-    $harga  = $paket['harga'];
-    $total_bayar = $harga * $jumlah_org;
-    $status = 'menunggu';
+    // Hitung durasi hari
+    $durasi = (strtotime($tglplg) - strtotime($tglbrk)) / 86400;
+    if($durasi < 1) $durasi = 1;
 
-    $query = "INSERT INTO pemesanan 
-    (nama_pelanggan, email, telepon, id_akun, id_paket, tanggal_berangkat, durasi, jumlah_orang, total_bayar, status)
-    VALUES
-    ('$nama', '$email', '$telepon', '$id_akun', '$id_paket', '$tglbrkt', '$durasi', '$jumlah_org', '$total_bayar', '$status')";
+    // Hitung total bayar
+    $total = $harga * $jumlah;
 
-    mysqli_query($db, $query);
+    // Simpan ke tabel pemesanan
+   $db->query("INSERT INTO pemesanan 
+    (id_akun, id_paket, nama_pelanggan, email, telepon, tanggal_berangkat, durasi, jumlah_orang, total_bayar, status)
+    VALUES 
+    ($id_akun, $paket, '$nama', '$email', '$nohp', '$tglbrk', '$durasi Hari', $jumlah, $total, 'menunggu')
+");
 
-    return mysqli_affected_rows($db);
+    $id_pemesanan = $db->insert_id;
+
+    // Simpan ke tabel pemesanan_destinasi
+    foreach($destinasi as $id_dest) {
+        $id_dest = (int)$id_dest;
+        $db->query("INSERT INTO pemesanan_destinasi (id_pemesanan, id_destinasi)
+                    VALUES ($id_pemesanan, $id_dest)");
+    }
+
+    return $id_pemesanan;
+}
+
+function tampilkan_gambar($nama_file) {
+    $base_path = "src/paket1/";
+    $default = "src/no-image.jpg";
+
+    if (!empty($nama_file) && file_exists($base_path . $nama_file)) {
+        return $base_path . $nama_file;
+    } else {
+        return $default;
+    }
 }
 ?>
