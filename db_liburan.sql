@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2025 pada 07.44
+-- Waktu pembuatan: 24 Nov 2025 pada 15.38
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -137,6 +137,18 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `nama_pelanggan`, `email`, `telepon`, `
 (9, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 102, '2025-11-25', '5 Hari', 2, 1400, 'menunggu'),
 (10, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 103, '2025-11-29', '1 Hari', 1, 200, 'dikonfirmasi');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pemesanan_destinasi`
+--
+
+CREATE TABLE `pemesanan_destinasi` (
+  `id` int(11) NOT NULL,
+  `id_pemesanan` int(11) DEFAULT NULL,
+  `id_destinasi` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -176,6 +188,14 @@ ALTER TABLE `pemesanan`
   ADD KEY `id_akun` (`id_akun`);
 
 --
+-- Indeks untuk tabel `pemesanan_destinasi`
+--
+ALTER TABLE `pemesanan_destinasi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pemesanan` (`id_pemesanan`),
+  ADD KEY `id_destinasi` (`id_destinasi`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -210,6 +230,12 @@ ALTER TABLE `pemesanan`
   MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT untuk tabel `pemesanan_destinasi`
+--
+ALTER TABLE `pemesanan_destinasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
@@ -224,7 +250,15 @@ ALTER TABLE `paket_destinasi`
 -- Ketidakleluasaan untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_paket`) REFERENCES `paket` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_paket`) REFERENCES `paket` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pemesanan_destinasi`
+--
+ALTER TABLE `pemesanan_destinasi`
+  ADD CONSTRAINT `pemesanan_destinasi_ibfk_1` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan` (`id_pemesanan`),
+  ADD CONSTRAINT `pemesanan_destinasi_ibfk_2` FOREIGN KEY (`id_destinasi`) REFERENCES `destinasi` (`id_destinasi`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
