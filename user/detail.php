@@ -28,7 +28,24 @@ $paket = $db->query("SELECT * FROM paket WHERE id_paket = $id_paket")->fetch_ass
 if(!$paket) {
     die("Error: Paket wisata tidak ditemukan. <a href='home.php'>Kembali ke Home</a>");
 }
+// ===== MAP PROVINSI =====
+$wisata_map = [
+    101 => 'pantai',
+    102 => 'pulau',
+    103 => 'kuliner',
+];
 
+$wisata = $wisata_map[$id_paket] ?? null;
+
+
+$list_destinasi = [];
+if($wisata) {
+    $stmt = $db->prepare("SELECT * FROM destinasi WHERE paket = ? ORDER BY nama_destinasi");
+    $stmt->bind_param("s", $wisata);
+    $stmt->execute();
+    $list_destinasi = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -36,6 +53,7 @@ if(!$paket) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <title>Detail - <?= $paket['nama_paket']; ?></title>
 </head>
 <body>
@@ -95,15 +113,32 @@ if(!$paket) {
               <input type="number" name="jumlah_org" class="form-control" required>
             </div>
 
+             <?php if(!empty($list_destinasi)): ?>
+            <div class="mb-3">
+              <label class="fw-bold">Pilih Destinasi</label>
+              <small class="text-muted d-block mb-1">* Minimal 0, maksimal 3</small>
+
+              <?php foreach($list_destinasi as $g): ?>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="destinasi[]" 
+                       value="<?= $g['nama_destinasi']; ?>" id="destinasi<?= $g['id_destinasi']; ?>">
+                <label class="form-check-label" for="destinasi<?= $g['id_destinasi']; ?>">
+                  <?= $g['nama_destinasi']; ?>
+                </label>
+              </div>
+              <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
             <div class="mb-3">
               <label>Tanggal Keberangkatan</label>
               <input type="date" name="tglbrkt" class="form-control" required>
             </div>
 
-            <div class="mb-3">
-              <label>Durasi</label>
-              <input type="text" class="form-control" value="<?= htmlspecialchars($paket['durasi'], ENT_QUOTES); ?>" disabled>
-  <input type="hidden" name="paket_wisata" value="<?= htmlspecialchars($paket['durasi'], ENT_QUOTES); ?>">
+           <div class="mb-3">
+              <label>Tanggal Kepulangan</label>
+              <small class="text-muted d-block mb-1">* Minimal 3 Hari dari tanggal Keberangkatan</small>
+              <input type="date" name="tglplg" class="form-control" required>
             </div>
             <div class="alert alert-info">
               <strong>Harga Paket:</strong><br>
@@ -119,7 +154,20 @@ if(!$paket) {
 
   </div>
 </div>
+<script>
+// BATAS MAKSIMAL CHECKBOX = 2
+document.addEventListener("DOMContentLoaded", () => {
+  const boxes = document.querySelectorAll('input[name="destinasi[]"]');
+  const max = 3;
 
+  boxes.forEach(box => {
+    box.addEventListener("change", () => {
+      const checked = document.querySelectorAll('input[name="destinasi[]"]:checked').length;
+      boxes.forEach(b => b.disabled = checked >= max && !b.checked);
+    });
+  });
+});
+</script>
 
 </body>
 </html>

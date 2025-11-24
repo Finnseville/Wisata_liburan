@@ -1,10 +1,49 @@
-<!-- Content Detail Paket Pantai -->
 <div class="card shadow-sm mb-4">
-  <div class="bg-gradient" style="background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); height: 300px; display: flex; align-items: center; justify-content: center;">
-    <h1 class="text-white display-4 fw-bold">#<?php echo $paket['nama_paket']; ?></h1>
+
+  <!-- ================== CAROUSEL ================== -->
+  <div class="card-img-top">
+    <div id="carouselPaket" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="./src/paket1/kelor.jpg" class="d-block w-100 carousel-img">
+        </div>
+
+        <div class="carousel-item">
+          <img src="./src/paket1/paintaipink.jpg" class="d-block w-100 carousel-img">
+        </div>
+
+        <div class="carousel-item">
+          <img src="./src/paket1/sebayur.jpg" class="d-block w-100 carousel-img">
+        </div>
+
+      </div>
+
+      <!-- Tombol Prev -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselPaket" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <!-- Tombol Next -->
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselPaket" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
   </div>
-  
+
+  <!-- STYLE -->
+  <style>
+    .carousel-img {
+      height: 350px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  </style>
+
+  <!-- ================== CARD BODY ================== -->
   <div class="card-body">
+
     <h4 class="text-success mb-3">Rp <?php echo number_format($paket['harga'], 0, ',', '.'); ?></h4>
     <p class="lead"><?php echo $paket['deskripsi']; ?></p>
 
@@ -21,48 +60,42 @@
     <!-- Destinasi -->
     <h5 class="fw-bold mt-4 mb-3">Destinasi Wisata</h5>
     <div class="row g-3">
-      
-      <!-- PANTAI SEBAYUR -->
+
       <div class="col-md-6">
         <div class="card h-100">
           <div class="card-body">
             <h6 class="fw-bold">Pantai Sebayur</h6>
             <p class="small text-muted mb-0">
-              Pantai dengan air sebening kristal dan spot snorkeling terbaik. 
-              Dipenuhi terumbu karang warna-warni dan ikan tropis.
+              Air sebening kristal dan spot snorkeling dengan terumbu karang warna-warni.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- PANTAI KELOR -->
       <div class="col-md-6">
         <div class="card h-100">
           <div class="card-body">
             <h6 class="fw-bold">Pantai Kelor</h6>
             <p class="small text-muted mb-0">
-              Pantai terkenal dengan bukit kecil yang dapat didaki untuk menikmati 
-              panorama 360° Labuan Bajo. Pasir putih halus & air jernih.
+              Bukit kecil ikonik untuk foto panorama 360° dan air laut jernih.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- PANTAI PINK -->
       <div class="col-md-6">
         <div class="card h-100">
           <div class="card-body">
             <h6 class="fw-bold">Pantai Pink</h6>
             <p class="small text-muted mb-0">
-              Pantai dengan pasir berwarna pink alami, salah satu dari sedikit di dunia. 
-              Sangat indah untuk foto, snorkeling, dan menikmati sunrise.
+              Pasir pink alami, spot foto favorit dan tempat snorkeling yang menakjubkan.
             </p>
           </div>
         </div>
       </div>
 
     </div>
-    
+
     <!-- Fasilitas -->
     <h5 class="fw-bold mt-4 mb-3">Fasilitas Termasuk</h5>
     <div class="row">
@@ -87,10 +120,11 @@
       <h6 class="fw-bold">⚠️ Catatan Penting:</h6>
       <ul class="mb-0 small">
         <li>Gunakan sunscreen untuk menghindari kulit terbakar</li>
-        <li>Dianjurkan membawa baju ganti & dry bag</li>
-        <li>Cuaca dapat memengaruhi jadwal keberangkatan</li>
-        <li>Minimal peserta 2 orang</li>
+        <li>Bawa baju ganti & dry bag</li>
+        <li>Cuaca dapat mengubah jadwal keberangkatan</li>
+        <li>Minimal 2 peserta</li>
       </ul>
     </div>
+
   </div>
 </div>

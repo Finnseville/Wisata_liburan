@@ -115,18 +115,33 @@ include "../config/app.php";
     
     <!-- Card Paket Wisata -->
     <div class="col-md-4">
-      <div class="card h-100 shadow-sm">
-        <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-          <h5>gambar paket</h5>
-        </div>
-        <div class="card-body">
-          <a href="detail.php" class="card-title"><?php echo $row['nama_paket']; ?></a>
-          <p class="text-muted mb-2">Harga: <strong>Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></strong></p>
-          <p class="card-text"><?php echo $row['deskripsi']; ?></p>
-          <a href="detail.php?id=<?php echo $row['id_paket']; ?>" class="btn btn-primary">Lihat Detail</a>
-        </div>
-      </div>
+  <div class="card h-100 shadow-sm">
+
+   <img src="data:image/jpeg;base64,<?php echo base64_encode($row['img']); ?>"
+        class="card-img-top" 
+         style="height: 200px; object-fit: cover;" 
+         alt="gambar paket">
+
+
+    <div class="card-body">
+      <a href="detail.php?id=<?php echo $row['id_paket']; ?>" class="card-title">
+        <?php echo $row['nama_paket']; ?>
+      </a>
+
+      <p class="text-muted mb-2">
+        Harga: <strong>Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></strong>
+      </p>
+
+      <p class="card-text"><?php echo $row['deskripsi']; ?></p>
+
+      <a href="detail.php?id=<?php echo $row['id_paket']; ?>" class="btn btn-primary">
+        Lihat Detail
+      </a>
     </div>
+
+  </div>
+</div>
+
 
     <?php
         }
