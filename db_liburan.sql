@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Nov 2025 pada 21.28
+-- Waktu pembuatan: 24 Nov 2025 pada 07.44
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -133,8 +133,9 @@ CREATE TABLE `pemesanan` (
 --
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `nama_pelanggan`, `email`, `telepon`, `id_akun`, `id_paket`, `tanggal_berangkat`, `durasi`, `jumlah_orang`, `total_bayar`, `status`) VALUES
-(1, 'Adlan', 'Adlan@gmail.com', '081234567890', 0, 101, '2025-11-30', '3 Hari', 3, 1800, 'dikonfirmasi'),
-(2, 'Adlan', 'Adlan@gmail.com', '081234567890', 0, 102, '2025-11-30', '5 Hari', 3, 2100, 'dibatalkan');
+(8, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 101, '2025-11-30', '3 Hari', 3, 1800, 'dibatalkan'),
+(9, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 102, '2025-11-25', '5 Hari', 2, 1400, 'menunggu'),
+(10, 'Adlan', 'Adlan@gmail.com', '081234567890', 1, 103, '2025-11-29', '1 Hari', 1, 200, 'dikonfirmasi');
 
 --
 -- Indexes for dumped tables
@@ -206,7 +207,7 @@ ALTER TABLE `paket_destinasi`
 -- AUTO_INCREMENT untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

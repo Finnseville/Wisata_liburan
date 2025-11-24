@@ -12,6 +12,7 @@ if (isset($_POST['masuk'])) {
     if ($data) {
         $_SESSION['username'] = $data['username'];
         $_SESSION['role'] = $data['role'];
+        $_SESSION['id_akun'] = $data['id_akun'];
 
         if ($data['role'] == 'Admin') {
             header("Location: ../admin/awal.php");

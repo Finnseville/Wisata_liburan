@@ -13,6 +13,9 @@ function select($query){
 
 function create_pesanan($post){
     global $db;
+    session_start();
+
+    $id_akun = $_SESSION['id_akun']; 
 
     $nama       = mysqli_real_escape_string($db, $post['nama']);
     $email      = mysqli_real_escape_string($db, $post['email']);
@@ -21,23 +24,18 @@ function create_pesanan($post){
     $tglbrkt    = $post['tglbrkt'];
     $jumlah_org = intval($post['jumlah_org']);
 
-    // Ambil data paket
     $paket = $db->query("SELECT * FROM paket WHERE id_paket = $id_paket")->fetch_assoc();
     if(!$paket) return 0;
 
     $durasi = $paket['durasi'];
     $harga  = $paket['harga'];
-
-    // Hitung total bayar
     $total_bayar = $harga * $jumlah_org;
-
     $status = 'menunggu';
 
-    // Insert ke tabel pemesanan
     $query = "INSERT INTO pemesanan 
-(nama_pelanggan, email, telepon, id_akun, id_paket, tanggal_berangkat, durasi, jumlah_orang, total_bayar, status)
-VALUES
-('$nama', '$email', '$telepon', '$id_akun', '$id_paket', '$tglbrkt', '$durasi', '$jumlah_org', '$total_bayar', '$status')";
+    (nama_pelanggan, email, telepon, id_akun, id_paket, tanggal_berangkat, durasi, jumlah_orang, total_bayar, status)
+    VALUES
+    ('$nama', '$email', '$telepon', '$id_akun', '$id_paket', '$tglbrkt', '$durasi', '$jumlah_org', '$total_bayar', '$status')";
 
     mysqli_query($db, $query);
 
