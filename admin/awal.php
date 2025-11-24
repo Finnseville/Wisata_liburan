@@ -22,6 +22,9 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'Admin') {
       <div class="d-grid gap-3">
         <a href="daftar_pesanan.php" class="btn btn-primary btn-lg">Daftar Pesanan</a>
         <a href="daftar_destinasi.php" class="btn btn-success btn-lg">Daftar Destinasi</a>
+
+        <!-- Tombol Logout -->
+        <a href="../Login/logout.php" class="btn btn-danger btn-lg">Logout</a>
       </div>
     </div>
   </div>

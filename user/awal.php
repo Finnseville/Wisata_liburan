@@ -118,28 +118,18 @@ include "../config/app.php";
   <div class="card h-100 shadow-sm">
     
 <?php
-$protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
-$host = $_SERVER['HTTP_HOST'];
-$folder = dirname($_SERVER['PHP_SELF']);
+$gambar = "src/no-image.jpg";
 
-$base = "$protocol://$host$folder/";
-
-$gambar = $base . "src/no-image.jpg";
-
-if ($row['id_paket'] == 1) {
-    $gambar = $base . "src/paket1/kelor.jpg";
-} elseif ($row['id_paket'] == 2) {
-    $gambar = $base . "src/paket1/komodo.jpg";
-} elseif ($row['id_paket'] == 3) {
-    $gambar = $base . "src/paket1/jagung_bose.jpg";
+if ($row['id_paket'] == 101) {
+    $gambar = "src/paket1/kelor.jpg";
+} elseif ($row['id_paket'] == 102) {
+    $gambar = "src/paket2/komodo.jpg";
+} elseif ($row['id_paket'] == 103) {
+    $gambar = "src/paket3/jagung_bose.jpg";
 }
-echo "<pre>";
-echo $gambar;
-echo "</pre>";
 ?>
+<img src="<?= $gambar ?>" class="card-img-top" style="height: 200px; object-fit: cover;">
 
-<img src="<?= $gambar ?>" style="border:5px solid red">
-<p style="color:red"><?= $gambar ?></p>
 
     <div class="card-body">
       <a href="detail.php?id=<?php echo $row['id_paket']; ?>" class="card-title">

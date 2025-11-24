@@ -36,8 +36,12 @@ if (isset($_GET['batalkan'])) {
 </head>
 <body>
 
-<div class="container my-5">
-  <h2 class="text-center fw-bold mb-4">📋 Pemesanan Saya</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold">Pemesanan Saya</h2>
+  <a href="awal.php" class="btn btn-secondary">
+    Kembali
+  </a>
+</div>
 
   <div class="table-responsive">
     <table class="table table-bordered table-striped text-center align-middle">
