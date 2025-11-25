@@ -96,24 +96,7 @@
 
     </div>
 
-    <!-- Fasilitas -->
-    <h5 class="fw-bold mt-4 mb-3">Fasilitas Termasuk</h5>
-    <div class="row">
-      <div class="col-md-6">
-        <ul class="list-unstyled">
-          <li>Transportasi kapal wisata</li>
-          <li>Penginapan nyaman</li>
-          <li>Makan 3x sehari</li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <ul class="list-unstyled">
-          <li>Pemandu wisata profesional</li>
-          <li>Peralatan snorkeling</li>
-          <li>Dokumentasi foto/video</li>
-        </ul>
-      </div>
-    </div>
+
 
     <!-- Catatan -->
     <div class="alert alert-warning mt-4">
@@ -122,7 +105,6 @@
         <li>Gunakan sunscreen untuk menghindari kulit terbakar</li>
         <li>Bawa baju ganti & dry bag</li>
         <li>Cuaca dapat mengubah jadwal keberangkatan</li>
-        <li>Minimal 2 peserta</li>
       </ul>
     </div>
 

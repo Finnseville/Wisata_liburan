@@ -126,25 +126,6 @@ NOTE: ini yang bikin layout-mu pecah kemarin
 
         </div>
 
-        <!-- Fasilitas -->
-        <h5 class="fw-bold mt-4 mb-3">Fasilitas Termasuk</h5>
-        <div class="row">
-            <div class="col-md-6">
-                <ul class="list-unstyled">
-                    <li>Kapal wisata</li>
-                    <li>Penginapan</li>
-                    <li>Makan 3x sehari</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <ul class="list-unstyled">
-                    <li>Ranger Komodo</li>
-                    <li>Peralatan snorkeling</li>
-                    <li>Dokumentasi</li>
-                </ul>
-            </div>
-        </div>
-
         <!-- Catatan -->
         <div class="alert alert-warning mt-4">
             <h6 class="fw-bold">⚠️ Catatan Penting:</h6>
@@ -152,7 +133,6 @@ NOTE: ini yang bikin layout-mu pecah kemarin
                 <li>Gunakan sepatu trekking</li>
                 <li>Patuhi instruksi ranger</li>
                 <li>Cuaca bisa mengubah jadwal</li>
-                <li>Minimal 2 peserta</li>
             </ul>
         </div>
 

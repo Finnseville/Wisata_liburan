@@ -95,32 +95,12 @@
             </div>
 
         </div>
-
-        <!-- Fasilitas -->
-        <h5 class="fw-bold mt-4 mb-3">Fasilitas Termasuk</h5>
-        <div class="row">
-            <div class="col-md-6">
-                <ul class="list-unstyled">
-                    <li>Transportasi ke lokasi kuliner</li>
-                    <li>Makan dengan menu khas</li>
-                    <li>Pemandu lokal</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <ul class="list-unstyled">
-                    <li>Minuman segar lokal</li>
-                    <li>Dokumentasi foto</li>
-                </ul>
-            </div>
-        </div>
-
         <!-- Catatan -->
         <div class="alert alert-warning mt-4">
             <h6 class="fw-bold">⚠️ Catatan Penting:</h6>
             <ul class="mb-0 small">
                 <li>Menu dapat berubah sesuai ketersediaan bahan</li>
                 <li>Notifikasi alergi harus disampaikan sebelum perjalanan</li>
-                <li>Program berlangsung setengah hari</li>
             </ul>
         </div>
 
