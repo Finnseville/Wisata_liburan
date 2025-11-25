@@ -31,6 +31,20 @@ include "../config/app.php";
             background: linear-gradient( rgba(0,0,0,0.6), rgba(0,0,0,0.6) ),
                 url("src/bajo.jpeg") center/cover no-repeat;
         }
+
+        /* navbar scroll margin */
+        #destinasi {
+            scroll-margin-top: 120px;
+        }
+        #aboutus {
+            scroll-margin-top: 150px;
+        }
+        #kontak {
+            scroll-margin-top: 150px;
+        }
+        #hero {
+            scroll-margin-top: 150px;
+        }
     </style>
 </head>
 
@@ -99,7 +113,7 @@ include "../config/app.php";
 <br><br>
 
 <!-- DESTINATIONS -->
-<div class="container my-5">
+<div id="destinasi" class="container my-5">
   <h2 class="mb-4 text-center fw-bold">Daftar Paket Wisata</h2>
 
   <div class="row g-4 justify-content-center">
@@ -215,10 +229,6 @@ if ($row['id_paket'] == 101) {
 <!-- FOOTER -->
 <footer class="text-center py-4 bg-dark text-white">
     <p class="fw-semibold m-0">NATOUR</p>
-
-    <a href="aboutus.html" class="text-white">About Us</a> -
-    <a href="kontak.html" class="text-white">Contact Us</a>
-    <br>
     <small>© 2025 — All Rights Reserved</small>
 </footer>
 

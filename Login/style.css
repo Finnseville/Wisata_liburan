@@ -11,7 +11,7 @@ html {
 .hero {
     height: 550px;
     background: linear-gradient( rgba(0,0,0,0.6), rgba(0,0,0,0.6) ),
-                url("https://i.imgflip.com/7kx22g.jpg") center/cover no-repeat;
+                url("src/bajo.jpeg") center/cover no-repeat;
 }
 
 .hero-title {
