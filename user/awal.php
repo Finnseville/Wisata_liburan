@@ -187,12 +187,12 @@ if ($row['id_paket'] == 101) {
       <div class="col-md-6 col-lg-4">
         <h5 class="fw-bold mb-3">Tentang Kami</h5>
         <p class="text-secondary">
-          Heaven Komodo kami hadir sebagai sahabat bagi anda
-          untuk liburan ke Labuan Bajo dan Pulau Komodo.
+          Natour kami hadir sebagai sahabat bagi anda
+          untuk liburan ke NTT.
         </p>
         <p class="text-secondary">
           Berbekal pengalaman profesional bertahun-tahun di dunia wisata,
-          khususnya Paket Trip Labuan Bajo dan Pulau Komodo.
+          khususnya Paket Pantai dan Menjelajah pulau.
         </p>
       </div>
 
