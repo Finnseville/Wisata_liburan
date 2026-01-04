@@ -45,6 +45,13 @@ include "../config/app.php";
         #hero {
             scroll-margin-top: 150px;
         }
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
     </style>
 </head>
 
@@ -256,7 +263,7 @@ include "../config/app.php";
         </p>
         <p class="text-secondary">
           Berbekal pengalaman profesional bertahun-tahun di dunia wisata,
-          khususnya Paket Pantai dan Menjelajah pulau.
+          khususnya di Daerah NTT.
         </p>
       </div>
 
@@ -274,7 +281,7 @@ include "../config/app.php";
 
     <!-- Copyright -->
     <div class="text-center text-secondary pb-3">
-      © 2025 Natour — All Rights Reserved
+      © 2026 Natour — All Rights Reserved
     </div>
 
   </div>
