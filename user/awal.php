@@ -178,59 +178,45 @@ if ($row['id_paket'] == 101) {
 
 <br><br>
 
-<!-- ABOUT US -->
-<section id="aboutus" class="container py-5">
-    <div class="text-center mb-5">
-        <h2 class="fw-bold">About Us</h2>
-        <p class="text-muted">Our values define how we serve travelers worldwide.</p>
+<footer class="text-white pt-5" style="background-color: #0d1b2a;">
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <!-- Tentang Kami -->
+      <div class="col-md-6 col-lg-4">
+        <h5 class="fw-bold mb-3">Tentang Kami</h5>
+        <p class="text-secondary">
+          Heaven Komodo kami hadir sebagai sahabat bagi anda
+          untuk liburan ke Labuan Bajo dan Pulau Komodo.
+        </p>
+        <p class="text-secondary">
+          Berbekal pengalaman profesional bertahun-tahun di dunia wisata,
+          khususnya Paket Trip Labuan Bajo dan Pulau Komodo.
+        </p>
+      </div>
+
+      <!-- Kontak Kami -->
+      <div class="col-md-6 col-lg-4">
+        <h5 class="fw-bold mb-3">Kontak Kami</h5>
+        <p class="mb-2">📞 08xx-xxxx-xxxx</p>
+        <p class="mb-2">✉️ natour@gmail.com</p>
+        <p class="mb-0">⏰ Senin – Minggu 24 Jam Online</p>
+      </div>
+
     </div>
 
-    <div class="row g-4 text-center">
-        <div class="col-md-4">
-            <div class="p-4 shadow-sm rounded">
-                <h5 class="fw-bold mt-3">Global Access</h5>
-                <p class="text-muted">We provide travel services across the world.</p>
-            </div>
-        </div>
+    <hr class="border-light my-4">
 
-        <div class="col-md-4">
-            <div class="p-4 shadow-sm rounded">
-                <h5 class="fw-bold mt-3">Trusted Information</h5>
-                <p class="text-muted">All travel info is verified and accurate.</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="p-4 shadow-sm rounded">
-                <h5 class="fw-bold mt-3">User First</h5>
-                <p class="text-muted">We prioritize comfort & experience.</p>
-            </div>
-        </div>
+    <!-- Copyright -->
+    <div class="text-center text-secondary pb-3">
+      © 2025 Natour — All Rights Reserved
     </div>
-</section>
 
-<br><br>
-
-<!-- CONTACT US -->
-<section id="kontak" class="container py-5">
-    <h2 class="fw-bold mb-3">Contact Us</h2>
-
-    <p class="text-muted" style="max-width:650px;">
-        If you have questions or business inquiries, reach us using the info below.
-    </p>
-
-    <div class="mt-4">
-        <p><strong>Email:</strong> support@natour.com</p>
-        <p><strong>Phone:</strong> +62 800-000-000</p>
-        <p><strong>Business Hours:</strong> Monday — Friday | 09:00 — 18:00 (GMT+7)</p>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="text-center py-4 bg-dark text-white">
-    <p class="fw-semibold m-0">NATOUR</p>
-    <small>© 2025 — All Rights Reserved</small>
+  </div>
 </footer>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
