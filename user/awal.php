@@ -125,7 +125,9 @@ include "../config/app.php";
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
 
-        // Default gambar
+        // ===============================
+        // LOGIKA GAMBAR
+        // ===============================
         $gambar = "src/no-image.jpg";
 
         if ($row['id_paket'] == 101) {
@@ -135,10 +137,23 @@ include "../config/app.php";
         } elseif ($row['id_paket'] == 103) {
           $gambar = "src/paket3/jagung_bose.jpg";
         }
+
+        // ===============================
+        // LOGIKA LINK (STATIS)
+        // ===============================
+        $link = "";
+
+        if ($row['id_paket'] == 101) {
+          $link = "paket/paket_pantai.php";
+        } elseif ($row['id_paket'] == 102) {
+          $link = "paket_menjelajah.php";
+        } elseif ($row['id_paket'] == 103) {
+          $link = "paket_kuliner.php";
+        }
     ?>
 
     <div class="col-md-4">
-      <a href="detail.php?id=<?= $row['id_paket']; ?>" class="text-decoration-none">
+      <a href="<?= $link ?>" class="text-decoration-none">
 
         <div class="card border-0 shadow-sm text-white">
           <img 
@@ -148,7 +163,7 @@ include "../config/app.php";
             style="height:230px; object-fit:cover;"
           >
 
-          <!-- Overlay Bootstrap -->
+          <!-- Overlay -->
           <div class="card-img-overlay d-flex align-items-end"
                style="background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0));">
             <h5 class="fw-semibold mb-2">
@@ -176,6 +191,7 @@ include "../config/app.php";
 
   </div>
 </div>
+
 
 <br><br>
 
