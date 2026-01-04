@@ -52,8 +52,8 @@ include "../../config/app.php";
             <ul class="navbar-nav gap-3">
     <li class="nav-item"><a class="nav-link fw-semibold" href="../awal.php">Home</a></li>
     <li class="nav-item"><a class="nav-link fw-semibold" href="paket_pantai.php">Pantai</a></li>
-    <li class="nav-item"><a class="nav-link fw-semibold" href="paket_menjelajah.php">Menjelajah</a></li>
-    <li class="nav-item"><a class="nav-link fw-semibold" href="#car">Kuliner</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="#car">Menjelajah</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="paket_kuliner.php">Kuliner</a></li>
 
     <!-- MENU DAFTAR PEMESANAN -->
     <li class="nav-item">
@@ -84,15 +84,15 @@ include "../../config/app.php";
       <div class="carousel-inner">
 
         <div class="carousel-item active">
-          <img src="../src/paket3/jagung_bose.jpg" class="d-block w-100 carousel-img">
+          <img src="../src/paket2/komodo.jpg" class="d-block w-100 carousel-img">
         </div>
 
         <div class="carousel-item">
-          <img src="../src/paket3/sambal luat.jpg" class="d-block w-100 carousel-img">
+          <img src="../src/paket2/pulau-komodo.jpg" class="d-block w-100 carousel-img">
         </div>
 
         <div class="carousel-item">
-          <img src="../src/paket3/sei sapi.jpg" class="d-block w-100 carousel-img">
+          <img src="../src/paket2/pulau-sebayur.jpg" class="d-block w-100 carousel-img">
         </div>
 
       </div>
@@ -110,73 +110,109 @@ include "../../config/app.php";
     </div>
   </div>
 
-  <!-- STYLE -->
-  <style>
+
+<!-- ================== PAKET DETAIL ================== -->
+<div class="container my-5">
+  <div class="row g-4">
+
+    <!-- LEFT CONTENT -->
+    <div class="col-lg-8">
+
+      <h2 class="fw-bold mb-3">Paket Tour Menjelajah Kuliner NTT</h2>
+      <p class="text-muted">
+        Nikmati pengalaman wisata kuliner khas Nusa Tenggara Timur dengan cita rasa autentik
+        dan suasana lokal yang tak terlupakan.
+      </p>
+
+      <!-- Day 1 -->
+      <h5 class="fw-bold mt-4">Itinerary Day 1 - Jagung Bose</h5>
+      <ul>
+        <li>Penjemputan peserta</li>
+        <li>Mencicipi Jagung Bose khas NTT</li>
+        <li>Wisata kuliner lokal</li>
+      </ul>
+
+      <img src="../src/paket3/jagung_bose.jpg"
+           class="img-fluid rounded-4 shadow-sm my-3"
+           alt="Jagung Bose">
+
+      <!-- Day 2 -->
+      <h5 class="fw-bold mt-4">Itinerary Day 2 - Sambal Luat & Sei Sapi</h5>
+      <ul>
+        <li>Wisata pasar tradisional</li>
+        <li>Mencicipi Sambal Luat</li>
+        <li>Makan Siang Sei Sapi</li>
+      </ul>
+
+      <img src="../src/paket3/sei sapi.jpg"
+           class="img-fluid rounded-4 shadow-sm my-3"
+           alt="Sei Sapi">
+
+      <!-- Notes -->
+      <div class="alert alert-warning rounded-4 mt-4">
+        <h6 class="fw-bold">Catatan Penting</h6>
+        <ul class="mb-0">
+          <li>Harga dapat berubah sewaktu-waktu</li>
+          <li>Minimal 2 peserta</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="col-lg-4">
+
+      <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top:100px;">
+        <div class="card-body">
+
+          <h4 class="fw-bold text-danger mb-3">
+            Rp. 900.000 <small class="text-muted fs-6">/ orang</small>
+          </h4>
+
+          <form>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Nama Lengkap">
+            </div>
+
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="mb-3">
+              <input type="number" class="form-control" placeholder="No. Telepon">
+            </div>
+
+            <div class="mb-3">
+              <input type="date" class="form-control">
+            </div>
+
+            <button class="btn btn-danger w-100 fw-semibold">
+              Pesan Sekarang
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<style>
+    img {
+  transition: transform .3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
     .carousel-img {
       height: 350px;
       object-fit: cover;
       border-radius: 8px;
     }
-  </style>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Paket Wisata Pantai</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-<!-- DESTINATIONS -->
-<div id="destinasi" class="container my-5">
-  <h2 class="mb-4 text-center fw-bold">Paket Wisata Kuliner</h2>
-
-  <div class="row g-4 justify-content-center">
-
-<!-- Paket Tour Menjelajah Kuliner NTT -->
-<div class="col-md-4">
-  <a href="#" class="text-decoration-none text-dark">
-    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-
-      <!-- Image wrapper -->
-      <div class="position-relative">
-        <img
-          src="../src/paket3/jagung_bose.jpg"
-          class="w-100"
-          alt="Pantai Kelor"
-          style="height:260px; object-fit:cover;"
-        >
-
-        <!-- Price badge -->
-        <span
-          class="position-absolute bottom-0 start-0 m-3 px-3 py-2 rounded-3 fw-semibold text-white"
-          style="background-color:#ff6b6b;"
-        >
-          Rp. 900.000
-        </span>
-      </div>
-
-      <!-- Card body -->
-      <div class="card-body">
-        <h5 class="fw-bold mb-0">
-          Paket Tour Menjelajah Kuliner NTT
-        </h5>
-      </div>
-
-    </div>
-  </a>
-  </div>
-
-</body>
-</html>
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+</style>

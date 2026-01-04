@@ -36,7 +36,7 @@ include "../config/app.php";
         #destinasi {
             scroll-margin-top: 120px;
         }
-        #aboutus {
+        #about {
             scroll-margin-top: 150px;
         }
         #kontak {
@@ -66,7 +66,7 @@ include "../config/app.php";
             <ul class="navbar-nav gap-3">
     <li class="nav-item"><a class="nav-link fw-semibold" href="#hero">Home</a></li>
     <li class="nav-item"><a class="nav-link fw-semibold" href="#destinasi">Destination</a></li>
-    <li class="nav-item"><a class="nav-link fw-semibold" href="#aboutus">About Us</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="#about">About Us</a></li>
     <li class="nav-item"><a class="nav-link fw-semibold" href="#kontak">Contact Us</a></li>
 
     <!-- MENU DAFTAR PEMESANAN -->
@@ -146,9 +146,9 @@ include "../config/app.php";
         if ($row['id_paket'] == 101) {
           $link = "paket/paket_pantai.php";
         } elseif ($row['id_paket'] == 102) {
-          $link = "paket_menjelajah.php";
+          $link = "paket/paket_menjelajah.php";
         } elseif ($row['id_paket'] == 103) {
-          $link = "paket_kuliner.php";
+          $link = "paket/paket_kuliner.php";
         }
     ?>
 
@@ -242,7 +242,7 @@ include "../config/app.php";
 <!-- CONTACT US -->
 
 
-<footer class="text-white pt-5" style="background-color: #0d1b2a;">
+<footer id="kontak" class="text-white pt-5" style="background-color: #0d1b2a;">
   <div class="container">
 
     <div class="row gy-4">
