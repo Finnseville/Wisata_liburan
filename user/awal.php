@@ -117,59 +117,60 @@ include "../config/app.php";
   <h2 class="mb-4 text-center fw-bold">Daftar Paket Wisata</h2>
 
   <div class="row g-4 justify-content-center">
-    
+
     <?php
-    // Ambil data dari database
     $sql = "SELECT * FROM paket ORDER BY id_paket";
     $result = $db->query($sql);
-    
+
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+      while ($row = $result->fetch_assoc()) {
+
+        // Default gambar
+        $gambar = "src/no-image.jpg";
+
+        if ($row['id_paket'] == 101) {
+          $gambar = "src/paket1/kelor.jpg";
+        } elseif ($row['id_paket'] == 102) {
+          $gambar = "src/paket2/komodo.jpg";
+        } elseif ($row['id_paket'] == 103) {
+          $gambar = "src/paket3/jagung_bose.jpg";
+        }
     ?>
-    
-    <!-- Card Paket Wisata -->
+
     <div class="col-md-4">
-  <div class="card h-100 shadow-sm">
-    
-<?php
-$gambar = "src/no-image.jpg";
+      <a href="detail.php?id=<?= $row['id_paket']; ?>" class="text-decoration-none">
 
-if ($row['id_paket'] == 101) {
-    $gambar = "src/paket1/kelor.jpg";
-} elseif ($row['id_paket'] == 102) {
-    $gambar = "src/paket2/komodo.jpg";
-} elseif ($row['id_paket'] == 103) {
-    $gambar = "src/paket3/jagung_bose.jpg";
-}
-?>
-<img src="<?= $gambar ?>" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card border-0 shadow-sm text-white">
+          <img 
+            src="<?= $gambar ?>" 
+            class="card-img"
+            alt="<?= $row['nama_paket']; ?>"
+            style="height:230px; object-fit:cover;"
+          >
 
+          <!-- Overlay Bootstrap -->
+          <div class="card-img-overlay d-flex align-items-end"
+               style="background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0));">
+            <h5 class="fw-semibold mb-2">
+              <?= $row['nama_paket']; ?>
+            </h5>
+          </div>
+        </div>
 
-    <div class="card-body">
-      <a href="detail.php?id=<?php echo $row['id_paket']; ?>" class="card-title">
-        <?php echo $row['nama_paket']; ?>
-      </a>
-
-      <p class="text-muted mb-2">
-        Harga: <strong>Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></strong>
-      </p>
-
-      <p class="card-text"><?php echo $row['deskripsi']; ?></p>
-
-      <a href="detail.php?id=<?php echo $row['id_paket']; ?>" class="btn btn-primary">
-        Lihat Detail
       </a>
     </div>
 
-  </div>
-</div>
-
-
     <?php
-        }
+      }
     } else {
-        echo "<div class='col-12 text-center'><div class='alert alert-warning'>Belum ada paket wisata tersedia.</div></div>";
+      echo "
+      <div class='col-12 text-center'>
+        <div class='alert alert-warning'>
+          Belum ada paket wisata tersedia.
+        </div>
+      </div>";
     }
+
     $db->close();
     ?>
 
@@ -178,6 +179,53 @@ if ($row['id_paket'] == 101) {
 
 <br><br>
 
+<!-- ABOUT US -->
+<div id="about" class="container my-5 py-5">
+
+  <!-- Judul -->
+  <h2 class="text-center fw-bold mb-5">About Us</h2>
+
+  <!-- Cards -->
+  <div class="row g-4 justify-content-center">
+
+    <!-- Card 1 -->
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow text-center p-4">
+        <h5 class="fw-bold mb-3">Finn</h5>
+        <p class="fw-semibold mb-1">Absent : 19</p>
+        <p class="fw-semibold mb-1">Role: Front End - Back End</p>
+        <p class="fw-semibold mb-0">Words of the day : lebih baik menjadi cupu dari pada menjadi cepu </p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow text-center p-4">
+        <h5 class="fw-bold mb-3">Sinopls</h5>
+        <p class="fw-semibold mb-1">Absent : 7</p>
+        <p class="fw-semibold mb-1">Role: Front End </p>
+        <p class="fw-semibold mb-0">Words of the day : Figma De Sigma</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+
+      <div class="card h-100 border-0 shadow text-center p-4">
+        <h5 class="fw-bold mb-3">Misthoz</h5>
+        <p class="fw-semibold mb-1">Absent : 17</p>
+        <p class="fw-semibold mb-1">Role: Back End</p>
+        <p class="fw-semibold mb-0">Words of the day : Cape Dengan Tugas 😭 </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<br><br>
+<!-- CONTACT US -->
+
+
 <footer class="text-white pt-5" style="background-color: #0d1b2a;">
   <div class="container">
 
@@ -185,7 +233,7 @@ if ($row['id_paket'] == 101) {
 
       <!-- Tentang Kami -->
       <div class="col-md-6 col-lg-4">
-        <h5 class="fw-bold mb-3">Tentang Kami</h5>
+        <h5 class="fw-bold mb-3">Kenapa Memilih Kami</h5>
         <p class="text-secondary">
           Natour kami hadir sebagai sahabat bagi anda
           untuk liburan ke NTT.
