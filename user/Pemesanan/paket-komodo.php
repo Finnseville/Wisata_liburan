@@ -51,9 +51,9 @@ include "../../config/app.php";
         <div class="collapse navbar-collapse justify-content-center" id="navMenu">
             <ul class="navbar-nav gap-3">
     <li class="nav-item"><a class="nav-link fw-semibold" href="../awal.php">Home</a></li>
-    <li class="nav-item"><a class="nav-link fw-semibold" href="paket_pantai.php">Pantai</a></li>
-    <li class="nav-item"><a class="nav-link fw-semibold" href="#car">Menjelajah</a></li>
-    <li class="nav-item"><a class="nav-link fw-semibold" href="paket_kuliner.php">Kuliner</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="../paket/paket_pantai.php">Pantai</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="../paket/paket_menjelajah.php">Menjelajah</a></li>
+    <li class="nav-item"><a class="nav-link fw-semibold" href="../paket/paket_kuliner.php">Kuliner</a></li>
 
     <!-- MENU DAFTAR PEMESANAN -->
     <li class="nav-item">
@@ -78,13 +78,13 @@ include "../../config/app.php";
     </div>
 </nav>
 
-<!-- ================== CAROUSEL ================== -->
+<!-- ================== CAROUSEL ================== UNUSED HERE FOR ALL PAKET/PACKAGE DETAILS!!! --> 
   <div id="car" class="card-img-top">
     <div id="carouselPaket" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
 
         <div class="carousel-item active">
-          <img src="../src/paket2/komodo.jpg" class="d-block w-100 carousel-img">
+          <img src="../src/paket2/komodo.jpg" class="d-block w-100 carousel-img"> <!-- CHANGE THIS ACCORDING TO FIGMA (self note lololol) -->
         </div>
 
         <div class="carousel-item">
@@ -118,83 +118,153 @@ include "../../config/app.php";
     <!-- LEFT CONTENT -->
     <div class="col-lg-8">
 
-      <h2 class="fw-bold mb-3">Paket Tour Menjelajah Kuliner NTT</h2>
+      <h1 class="fw-bold">Paket Komodo</h1>
       <p class="text-muted">
-        Nikmati pengalaman wisata kuliner khas Nusa Tenggara Timur dengan cita rasa autentik
-        dan suasana lokal yang tak terlupakan.
+        Ingin menjelajahi Pulau komodo dan pulau rinca? Langsung saja segara <br>
+        pesan Paket Komodo yang kami sediakan!.
+      </p>
+      
+       <h1 class="fw-bold mt-5">Mengapa Paket Komodo?</h1>
+      <p class="text-muted">
+        Paket ini memungkinkan anda menjelajahi 2 pulau dalam 2 hari, Pulau rinca <br>
+        dan pulau Komodo, Trekking dan melihat komodo dengan paket ini.<br>
+        hanya dengan sekali ketukan anda bisa menikmati nya sekarang juga!
       </p>
 
       <!-- Day 1 -->
-      <h5 class="fw-bold mt-4">Itinerary Day 1 - Jagung Bose</h5>
+      <h1 class="fw-bold mt-5">Itinerary Paket Komodo</h1>
+      <h2 class="fw-bold mt-2">Day 1 - Night 1, Pulau Komodo</h2>
       <ul>
-        <li>Penjemputan peserta</li>
-        <li>Mencicipi Jagung Bose khas NTT</li>
-        <li>Wisata kuliner lokal</li>
+        <li>Penjemputan di hotel Labuan Bajo oleh tim pengantar NaTour.</li>
+        <li>Berangkat ke Pulau Komodo (Perkiraan 2-3 Jam)</li>
+        <li>Makan siang di Restoran Lokal</li>
+        <li>Aktivitas Day - 1 Pulau Komodo :</li>
+          <ul>
+            <li>Explorasi Pulau Komodo</li>
+            <li>Photo Hunting dan menikmati pemandangan</li>
+          </ul>
+        <li>Check-in di guest house, makan malam, dan aktivitas Bebas</li>
       </ul>
 
-      <img src="../src/paket3/jagung_bose.jpg"
-           class="img-fluid rounded-4 shadow-sm my-3"
-           alt="Jagung Bose">
+      <img src="../src/paket2/komodo.jpg"
+           class="img-fluid rounded-3 shadow-sm my-3"
+           alt="modoo">
 
       <!-- Day 2 -->
-      <h5 class="fw-bold mt-4">Itinerary Day 2 - Sambal Luat & Sei Sapi</h5>
+      <h1 class="fw-bold mt-5">Itinerary Paket Komodo</h1>
+      <h2 class="fw-bold mt-2">Day 2 - Night 2, Pulau RincaR</h2>
       <ul>
-        <li>Wisata pasar tradisional</li>
-        <li>Mencicipi Sambal Luat</li>
-        <li>Makan Siang Sei Sapi</li>
+        <li>Penjemputan di Guest-House Pulau Komodo oleh tim pengantar NaTour.</li>
+        <li>Berangkat ke Pulau Rinca (Perkiraan 1-2 Jam)</li>
+        <li>Makan siang di Restoran Lokal</li>
+        <li>Aktivitas Day - 2 Pulau Rinca :</li>
+          <ul>
+            <li>Explorasi Pulau Rinca</li>
+            <li>Photo Hunting dan menikmati pemandangan</li>
+          </ul>
+        <li>Setelah selesai aktivitas, maka pengunjung akan kembali ke Hotel Labuan Bajo</li>
+        <li>Check-in di Hotel Labuan bajo. makan malam, dan aktivitas bebas</li>
+        <li>Pada besoknya akan dilakukan Check-in terakhir untuk Konfirmasi</li>
+        <li>Setelah Konfirmasi, Tour Berakhir</li>
       </ul>
 
-      <img src="../src/paket3/sei sapi.jpg"
-           class="img-fluid rounded-4 shadow-sm my-3"
-           alt="Sei Sapi">
+      <img src="../src/paket2/pulau-komodo.jpg"
+           class="img-fluid rounded-3 shadow-sm my-3"
+           alt="ricaa">
 
       <!-- Notes -->
       <div class="alert alert-warning rounded-4 mt-4">
         <h6 class="fw-bold">Catatan Penting</h6>
         <ul class="mb-0">
-          <li>Harga dapat berubah sewaktu-waktu</li>
-          <li>Minimal 2 peserta</li>
+          <li>Gunakan Sepatu Trekking</li>
+          <li>Patuhi Intruksi Ranger!</li>
+          <li>Perubahan Cuaca yang ekstrem dapat mengubah jadwal</li>
         </ul>
       </div>
 
     </div>
 
-    <!-- RIGHT SIDEBAR -->
-    <div class="col-lg-4">
+<!-- RIGHT SIDEBAR -->
+<div class="col-lg-4">
 
-      <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top:100px;">
-        <div class="card-body">
+  <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top:100px;">
 
-          <h4 class="fw-bold text-danger mb-3">
-            Rp. 900.000 <small class="text-muted fs-6">/ orang</small>
-          </h4>
+    <!-- PRICE BAR -->
+    <div class="bg-dark text-white text-center py-3 rounded-top-4">
+      <h4 class="fw-bold mb-0">
+        Rp. 900.000 <small class="fw-normal fs-6">/ orang</small>
+      </h4>
+    </div>
 
-          <form>
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Nama Lengkap">
-            </div>
+    <div class="card-body">
 
-            <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Email">
-            </div>
+      <form>
 
-            <div class="mb-3">
-              <input type="number" class="form-control" placeholder="No. Telepon">
-            </div>
-
-            <div class="mb-3">
-              <input type="date" class="form-control">
-            </div>
-
-            <button class="btn btn-danger w-100 fw-semibold">
-              Pesan Sekarang
-            </button>
-          </form>
-
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Nama Lengkap</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Masukkan nama lengkap"
+            required
+          >
         </div>
-      </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Masukkan email"
+            required
+          >
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">No. Telepon</label>
+          <input
+          type="tel"
+          class="form-control"
+          placeholder="Masukkan nomor telepon"
+          maxlength="12"
+          pattern="[0-9]{1,12}"
+          inputmode="numeric"
+          required
+          >
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Jumlah Orang</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Jumlah orang"
+            min="1"
+            value="1"
+            required
+          >
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Tanggal Keberangkatan</label>
+          <input
+            type="date"
+            class="form-control"
+            required
+          >
+        </div>
+
+        <button class="btn btn-danger w-100 fw-semibold">
+          Pesan Sekarang
+        </button>
+
+      </form>
 
     </div>
+  </div>
+
+</div>
+
 
   </div>
 </div>
