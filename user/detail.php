@@ -86,117 +86,141 @@ $stmt->bind_param("i", $id_paket);
     </div>
 
     <!-- ===== FORM PEMESANAN ===== -->
-    <div class="col-md-4">
-      <div class="card shadow-sm sticky-top" style="top:20px;">
-        <div class="card-body">
-
-          <h5 class="fw-bold mb-3">Form Pemesanan</h5>
-
-          <form action="" method="POST">
-            <input type="hidden" name="id_paket" value="<?= $id_paket; ?>">
-
-            <div class="mb-3">
-              <label>Paket Wisata</label>
-              <input type="text" class="form-control" value="<?= htmlspecialchars($paket['nama_paket'], ENT_QUOTES); ?>" disabled>
-              
-            </div>
-
-            <div class="mb-3">
-              <label>Nama Lengkap</label>
-              <input type="text" name="nama" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-              <label>Email</label>
-              <input type="email" name="email" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-              <label>No Telepon</label>
-              <input type="tel" name="nohp" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label>Jumlah Orang</label>
-              <input type="number" name="jumlah_org" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-    <label class="fw-bold">Pilih Destinasi</label>
-    <small class="text-muted d-block mb-1">* Maksimal 3 destinasi</small>
-
-    <?php
-    $query = $db->prepare("
-        SELECT d.id_destinasi, d.nama_destinasi
-        FROM destinasi d
-        JOIN paket_destinasi pd 
-            ON d.id_destinasi = pd.id_destinasi
-        WHERE pd.id_paket = ?
-    ");
-    $query->bind_param("i", $id_paket);
-    $query->execute();
-    $result = $query->get_result();
-
-    if ($result->num_rows == 0) {
-        echo "<div class='text-muted'>Tidak ada destinasi untuk paket ini.</div>";
-    }
-
-    while($row = $result->fetch_assoc()):
-    ?>
-        <div class="form-check">
-            <input 
-                type="checkbox" 
-                class="form-check-input"
-                name="destinasi[]" 
-                value="<?= $row['id_destinasi']; ?>"
-                id="dest<?= $row['id_destinasi']; ?>"
-            >
-            <label class="form-check-label" for="dest<?= $row['id_destinasi']; ?>">
-                <?= $row['nama_destinasi']; ?>
-            </label>
-        </div>
-    <?php endwhile; ?>
-</div>
-
-
-            <div class="mb-3">
-              <label>Tanggal Keberangkatan</label>
-              <input type="date" name="tglbrkt" class="form-control" required>
-            </div>
-
-           <div class="mb-3">
-              <label>Tanggal Kepulangan</label>
-              <small class="text-muted d-block mb-1">* Minimal 3 Hari dari tanggal Keberangkatan</small>
-              <input type="date" name="tglplg" class="form-control" required>
-            </div>
-            <div class="alert alert-info">
-              <strong>Harga Paket:</strong><br>
-              <span class="h5">Rp <?= number_format($paket['harga'],0,',','.'); ?></span>
-            </div>
-
-            <button class="btn btn-primary w-100 btn-lg" name="tambah" value="tambah" type="submit">PESAN SEKARANG</button>
-          </form>
-
-        </div>
-      </div>
+    <!-- RIGHT SIDEBAR -->
+<div class="col-lg-4">
+  <div class="card shadow-sm rounded-4 sticky-top" style="top:100px;">
+    <div class="bg-dark text-white text-center py-3 rounded-top-4">
+      <h4 class="fw-bold mb-0">
+        Rp. 900.000 <small class="fw-normal fs-6">/ orang</small>
+      </h4>
     </div>
 
+    <div class="card-body">
+      <form action="proses_pemesanan.php" method="POST" id="orderForm">
+        
+        <div class="mb-3">
+              <label>Paket Wisata</label>
+              <select name="paket_wisata" class="form-control" required>
+              <option value="">Paket</option>
+              <option value="solo">Solo</option>
+              <option value="duo">Duo</option>
+              <option value="rombongan">Rombongan</option>
+              </select>
+            </div>
+
+        <!-- Nama Pelanggan -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-user me-2"></i>Nama Lengkap
+          </label>
+          <input type="text" name="nama_pelanggan" class="form-control" 
+                 placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-envelope me-2"></i>Email
+          </label>
+          <input type="email" name="email" class="form-control" 
+                 placeholder="contoh@email.com" required>
+        </div>
+
+        <!-- Telepon -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-phone me-2"></i>No. Telepon
+          </label>
+          <input type="tel" name="telepon" class="form-control" 
+                 placeholder="08xxxxxxxxxx" maxlength="15" pattern="[0-9]{10,15}" required>
+          <small class="text-muted">Format: 08xxxxxxxxxx</small>
+        </div>
+
+        <!-- Jumlah Orang -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-users me-2"></i>Jumlah Orang
+          </label>
+          <input type="number" name="jumlah_orang" class="form-control" 
+                 min="1" max="20" value="1" id="jumlah_orang" required>
+        </div>
+
+        <!-- Tanggal Berangkat -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="far fa-calendar-alt me-2"></i>Tanggal Keberangkatan
+          </label>
+          <input type="date" name="tanggal_berangkat" class="form-control" 
+                 min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required>
+          <small class="text-muted">Minimal H+1</small>
+        </div>
+
+        <!-- Status (hidden, default: menunggu) -->
+        <input type="hidden" name="status" value="menunggu">
+
+        <!-- Total Bayar (auto calculate) -->
+        <div class="alert alert-info mb-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">Total Bayar:</span>
+            <span class="fw-bold fs-5" id="total_display">Rp 900.000</span>
+          </div>
+          <input type="hidden" name="total_bayar" id="total_bayar" value="900000">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" name="pesan" class="btn btn-danger w-100 fw-semibold" id="btn-bayar">
+          <i class="fas fa-shopping-cart me-2"></i>
+          Pesan Sekarang
+        </button>
+
+      </form>
+    </div>
   </div>
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const boxes = document.querySelectorAll('input[name="destinasi[]"]');
-    const max = 3;
 
-    boxes.forEach(box => {
-        box.addEventListener("change", () => {
-            const checked = document.querySelectorAll('input[name="destinasi[]"]:checked').length;
-            boxes.forEach(b => {
-                b.disabled = checked >= max && !b.checked;
-            });
-        });
-    });
+<script>
+// Auto calculate total bayar
+const hargaPerOrang = 900000;
+const inputJumlah = document.getElementById('jumlah_orang');
+const totalDisplay = document.getElementById('total_display');
+const totalInput = document.getElementById('total_bayar');
+
+inputJumlah.addEventListener('input', function() {
+  const jumlah = parseInt(this.value) || 1;
+  const total = hargaPerOrang * jumlah;
+  
+  totalDisplay.textContent = 'Rp ' + total.toLocaleString('id-ID');
+  totalInput.value = total;
+});
+
+// Validasi tanggal minimal besok
+const inputTanggal = document.querySelector('input[name="tanggal_berangkat"]');
+const today = new Date();
+today.setDate(today.getDate() + 1);
+inputTanggal.min = today.toISOString().split('T')[0];
+
+// Form validation
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+  const btn = document.getElementById('btn-bayar');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memproses...';
 });
 </script>
+
+<!-- PAYMENT MODAL -->
+<?php include "../content/metodebayar.html"; ?>
+
+<!-- MicroModal -->
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+
+<script>
+  MicroModal.init({
+    closeOnOverlayClick: true,
+    disableScroll: true
+  });
+</script>
+
+<script src="../content/redirect.js"></script>
 
 </body>
 </html>

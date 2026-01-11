@@ -98,21 +98,23 @@ include "../../config/app.php";
     <!-- CARD -->
     <?php
     $paket = [
-      ['img'=>'kelor.jpg','title'=>'Pantai Kelor & Pink' ,],
-      ['img'=>'paintaipink.jpg','title'=>'Pantai Pink & Sebayur'],
+      ['img'=>'kelor.jpg','title'=>'Pantai Kelor & Pink' , 'link' => '../pemesanan-pantai/paket-kelorpink.php'],
+      ['img'=>'paintaipink.jpg','title'=>'Pantai Pink & Sebayur', 'link' => '../pemesanan-pantai/paket-sebayurpink.php'],
       ['img'=>'sebayur.jpg','title'=>'Pantai Sebayur & Kelor', 'link' => '../pemesanan-pantai/paket-sebayurkelor.php'],
-      ['img'=>'pantai.jpg','title'=>'Tour Pantai NTT'],
+      ['img'=>'pantai.jpg','title'=>'Tour Pantai NTT', 'link' => '../pemesanan-pantai/paket-Tour Menjelajah NTT.php'],
     ];
     foreach ($paket as $p): ?>
 
     <div class="col-md-4">
-      <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-        <div class="position-relative">
+      <a href="<?= $p['link']; ?>" class="text-decoration-none text-dark">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+          <div class="position-relative">
           <img src="../src/paket1/<?= $p['img'] ?>" class="w-100" style="height:260px;object-fit:cover;">
           <span class="position-absolute bottom-0 start-0 m-3 px-3 py-2 rounded-3 fw-semibold text-white" style="background:#ff6b6b;">Rp. 1.900.000</span>
         </div>
         <div class="card-body"><h5 class="fw-bold mb-0"><?= $p['title'] ?></h5></div>
       </div>
+      </a>
     </div>
 
     <?php endforeach; ?>

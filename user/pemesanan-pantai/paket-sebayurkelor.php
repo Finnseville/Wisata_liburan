@@ -1,7 +1,20 @@
 <?php
 session_start();
 include "../../config/app.php";
+$list_destinasi = [];
+
+$stmt = $db->prepare("
+    SELECT id_destinasi, nama_destinasi
+    FROM destinasi
+    ORDER BY nama_destinasi ASC
+");
+
+$stmt->execute();
+$list_destinasi = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+$queryDestinasi = $db->query("SELECT id_destinasi, nama_destinasi FROM destinasi ORDER BY nama_destinasi ASC");
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -152,61 +165,148 @@ include "../../config/app.php";
 
     </div>
 
-    <!-- RIGHT SIDEBAR -->
-    <div class="col-lg-4">
-      <div class="card shadow-sm rounded-4 sticky-top" style="top:100px;">
-        <div class="bg-dark text-white text-center py-3 rounded-top-4">
-          <h4 class="fw-bold mb-0">
-            Rp. 900.000 <small class="fw-normal fs-6">/ orang</small>
-          </h4>
-        </div>
-
-        <div class="card-body">
-          <form id="orderForm">
-
-            <div class="mb-3">
-              <label class="form-label fw-semibold">Nama Lengkap</label>
-              <input type="text" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-semibold">Email</label>
-              <input type="email" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-semibold">No. Telepon</label>
-              <input type="tel" class="form-control" maxlength="12" pattern="[0-9]{1,12}" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-semibold">Jumlah Orang</label>
-              <input type="number" class="form-control" min="1" value="1" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-semibold">Tanggal Keberangkatan</label>
-              <input type="date" class="form-control" required>
-            </div>
-
-            <button type="button" class="btn btn-danger w-100 fw-semibold" id="btn-bayar">
-              Pesan Sekarang
-            </button>
-
-          </form>
-        </div>
-      </div>
+   <!-- RIGHT SIDEBAR -->
+<div class="col-lg-4">
+  <div class="card shadow-sm rounded-4 sticky-top" style="top:100px;">
+    <div class="bg-dark text-white text-center py-3 rounded-top-4">
+      <h4 class="fw-bold mb-0">
+        Rp. 900.000 <small class="fw-normal fs-6">/ orang</small>
+      </h4>
     </div>
 
+    <div class="card-body">
+      <form action="proses_pemesanan.php" method="POST" id="orderForm">
+
+        <!-- DESTINASI -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-map-marker-alt me-2"></i>Destinasi Wisata
+          </label>
+          <select name="id_destinasi" class="form-control" required>
+            <option value="">Pilih Destinasi</option>
+            <?php while ($d = mysqli_fetch_assoc($queryDestinasi)) : ?>
+              <option value="<?= $d['id_destinasi']; ?>">
+                <?= htmlspecialchars($d['nama_destinasi']); ?>
+              </option>
+            <?php endwhile; ?>
+          </select>
+        </div>
+
+        <!-- Paket Wisata -->
+        <div class="mb-3">
+          <label>Paket Wisata</label>
+          <select name="paket_wisata" class="form-control" required>
+            <option value="">Paket</option>
+            <option value="solo">Solo</option>
+            <option value="duo">Duo</option>
+            <option value="rombongan">Rombongan</option>
+          </select>
+        </div>
+
+        <!-- Nama Pelanggan -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-user me-2"></i>Nama Lengkap
+          </label>
+          <input type="text" name="nama_pelanggan" class="form-control"
+            placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-envelope me-2"></i>Email
+          </label>
+          <input type="email" name="email" class="form-control"
+            placeholder="contoh@email.com" required>
+        </div>
+
+        <!-- Telepon -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-phone me-2"></i>No. Telepon
+          </label>
+          <input type="tel" name="telepon" class="form-control"
+            placeholder="08xxxxxxxxxx" maxlength="15" pattern="[0-9]{10,15}" required>
+          <small class="text-muted">Format: 08xxxxxxxxxx</small>
+        </div>
+
+        <!-- Jumlah Orang -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="fas fa-users me-2"></i>Jumlah Orang
+          </label>
+          <input type="number" name="jumlah_orang" class="form-control"
+            min="1" max="20" value="1" id="jumlah_orang" required>
+        </div>
+
+        <!-- Tanggal Berangkat -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="far fa-calendar-alt me-2"></i>Tanggal Keberangkatan
+          </label>
+          <input type="date" name="tanggal_berangkat" class="form-control"
+            min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required>
+          <small class="text-muted">Minimal H+1</small>
+        </div>
+
+        <!-- Status -->
+        <input type="hidden" name="status" value="menunggu">
+
+        <!-- Total Bayar -->
+        <div class="alert alert-info mb-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">Total Bayar:</span>
+            <span class="fw-bold fs-5" id="total_display">Rp 900.000</span>
+          </div>
+          <input type="hidden" name="total_bayar" id="total_bayar" value="900000">
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" name="pesan" class="btn btn-danger w-100 fw-semibold" id="btn-bayar">
+          <i class="fas fa-shopping-cart me-2"></i>
+          Pesan Sekarang
+        </button>
+
+      </form>
+    </div>
   </div>
 </div>
+
+<script>
+// Harga default
+const hargaPerOrang = 900000;
+const inputJumlah = document.getElementById('jumlah_orang');
+const totalDisplay = document.getElementById('total_display');
+const totalInput = document.getElementById('total_bayar');
+
+inputJumlah.addEventListener('input', function () {
+  const jumlah = parseInt(this.value) || 1;
+  const total = hargaPerOrang * jumlah;
+
+  totalDisplay.textContent = 'Rp ' + total.toLocaleString('id-ID');
+  totalInput.value = total;
+});
+
+// Validasi tanggal minimal besok
+const inputTanggal = document.querySelector('input[name="tanggal_berangkat"]');
+const today = new Date();
+today.setDate(today.getDate() + 1);
+inputTanggal.min = today.toISOString().split('T')[0];
+
+// Disable button saat submit
+document.getElementById('orderForm').addEventListener('submit', function () {
+  const btn = document.getElementById('btn-bayar');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memproses...';
+});
+</script>
 
 <!-- PAYMENT MODAL -->
 <?php include "../content/metodebayar.html"; ?>
 
 <!-- MicroModal -->
 <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-
 <script>
   MicroModal.init({
     closeOnOverlayClick: true,
@@ -215,6 +315,7 @@ include "../../config/app.php";
 </script>
 
 <script src="../content/redirect.js"></script>
+
 
 </body>
 </html>

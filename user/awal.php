@@ -214,7 +214,8 @@ include "../config/app.php";
     <!-- Card 1 -->
     <div class="col-md-4">
       <div class="card h-100 border-0 shadow text-center p-4">
-        <h5 class="fw-bold mb-3">Finn</h5>
+        <h5 class="fw-bold mb-3">F1nn</h5>
+        <p class="fw-semibold mb-1">A.K.A : M Fawwaz Adlan</p>
         <p class="fw-semibold mb-1">Absent : 19</p>
         <p class="fw-semibold mb-1">Role: Front End - Back End</p>
         <p class="fw-semibold mb-0">Words of the day : lebih baik menjadi cupu dari pada menjadi cepu </p>
@@ -225,6 +226,7 @@ include "../config/app.php";
     <div class="col-md-4">
       <div class="card h-100 border-0 shadow text-center p-4">
         <h5 class="fw-bold mb-3">Sinopls</h5>
+        <p class="fw-semibold mb-1">A.K.A : Dewa Putra Hamdani</p>
         <p class="fw-semibold mb-1">Absent : 7</p>
         <p class="fw-semibold mb-1">Role: Front End </p>
         <p class="fw-semibold mb-0">Words of the day : Figma De Sigma</p>
@@ -236,6 +238,7 @@ include "../config/app.php";
 
       <div class="card h-100 border-0 shadow text-center p-4">
         <h5 class="fw-bold mb-3">Misthoz</h5>
+        <p class="fw-semibold mb-1">A.K.A : Maulid Ahmad Muafa</p>
         <p class="fw-semibold mb-1">Absent : 17</p>
         <p class="fw-semibold mb-1">Role: Back End</p>
         <p class="fw-semibold mb-0">Words of the day : Cape Dengan Tugas 😭 </p>
