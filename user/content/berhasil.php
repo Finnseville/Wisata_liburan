@@ -287,7 +287,7 @@
             </div>
 
             <div class="button-container">
-                <a href="daftar_pemesanan.php" class="btn-primary">Daftar Pemesanan</a>
+                <a href="../daftar_pemesanan.php" class="btn-primary">Daftar Pemesanan</a>
             </div>
         </div>
     </div>

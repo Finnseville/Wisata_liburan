@@ -1,5 +1,5 @@
 <?php
-ob_start();       // TAMBAHAN INI
+ob_start();
 include 'db.php'; 
 include 'controller.php';
 ?>
