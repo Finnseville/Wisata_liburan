@@ -1,0 +1,65 @@
+/* Hide modal by default */
+.modal {
+  display: none;
+}
+
+/* MicroModal control */
+.modal[aria-hidden="false"] {
+  display: block;
+}
+
+/* Overlay */
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+/* Modal container */
+.payment-modal {
+  background: linear-gradient(135deg, #1458DF, #0F9D46);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Title */
+.payment-title {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.payment-options {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.payment-option {
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  border: none;
+  padding: 18px 30px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.payment-option:hover {
+  transform: translateY(-4px);
+  background: rgba(0,0,0,0.9);
+}

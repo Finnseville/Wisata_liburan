@@ -98,9 +98,9 @@ include "../../config/app.php";
     <!-- CARD -->
     <?php
     $paket = [
-      ['img'=>'kelor.jpg','title'=>'Pantai Kelor & Pink'],
+      ['img'=>'kelor.jpg','title'=>'Pantai Kelor & Pink' ,],
       ['img'=>'paintaipink.jpg','title'=>'Pantai Pink & Sebayur'],
-      ['img'=>'sebayur.jpg','title'=>'Pantai Sebayur & Kelor'],
+      ['img'=>'sebayur.jpg','title'=>'Pantai Sebayur & Kelor', 'link' => '../pemesanan-pantai/paket-sebayurkelor.php'],
       ['img'=>'pantai.jpg','title'=>'Tour Pantai NTT'],
     ];
     foreach ($paket as $p): ?>

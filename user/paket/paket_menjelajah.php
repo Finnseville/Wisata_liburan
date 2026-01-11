@@ -99,10 +99,10 @@ img {
 
         <?php
         $paket = [
-            ['judul' => 'Paket Komodo', 'img' => 'komodo.jpg', 'link' => '../pemesanan/paket-komodo.php'],
-            ['judul' => 'Paket Serbayu dan Rinca', 'img' => 'pulau-komodo.jpg', 'link' => '../pemesanan/paket-rinca sebayur.php'],
-            ['judul' => 'Paket Komodo - Serbayu', 'img' => 'pulau-sebayur.jpg', 'link' => '../pemesanan/paket-sebayur komodo.php'],
-            ['judul' => 'Paket Tour Menjelajah NTT', 'img' => 'komodo.jpg', 'link' => '../pemesanan/paket-Tour Menjelajah NTT.php'],
+            ['judul' => 'Paket Komodo', 'img' => 'komodo.jpg', 'link' => '../pemesanan-menjelajah/paket-komodo.php'],
+            ['judul' => 'Paket Serbayu dan Rinca', 'img' => 'pulau-komodo.jpg', 'link' => '../pemesanan-menjelajah/paket-rinca sebayur.php'],
+            ['judul' => 'Paket Komodo - Serbayu', 'img' => 'pulau-sebayur.jpg', 'link' => '../pemesanan-menjelajah/paket-sebayur komodo.php'],
+            ['judul' => 'Paket Tour Menjelajah NTT', 'img' => 'komodo.jpg', 'link' => '../pemesanan-menjelajah/paket-Tour Menjelajah NTT.php'],
         ];
 
         foreach ($paket as $p) : ?>
